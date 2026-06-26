@@ -1,0 +1,134 @@
+{
+  "hero": {
+    "src": "assets/img/hero.jpg",
+    "title": "uncomfortable docking",
+    "creator": "mugley",
+    "creator_url": "https://www.flickr.com/photos/91256982@N00",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/91256982@N00/2041992132",
+    "source": "flickr"
+  },
+  "about": {
+    "src": "assets/img/about.jpg",
+    "title": "Penaga Hill From Kota Kinabalu CBD",
+    "creator": "thienzieyung",
+    "creator_url": "https://www.flickr.com/photos/26978304@N08",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/26978304@N08/4788889873",
+    "source": "flickr"
+  },
+  "service-port": {
+    "src": "assets/img/service-port.jpg",
+    "title": "San Diego Bay’s Waterfront Transformation",
+    "creator": "Port of San Diego",
+    "creator_url": "https://www.flickr.com/photos/8123170@N06",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/8123170@N06/4343373547",
+    "source": "flickr"
+  },
+  "service-vessel": {
+    "src": "assets/img/service-vessel.jpg",
+    "title": "IMO begins scoping exercise on autonomous vessels",
+    "creator": "imo.un",
+    "creator_url": "https://www.flickr.com/photos/62937028@N02",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/62937028@N02/41248324245",
+    "source": "flickr"
+  },
+  "service-crew": {
+    "src": "assets/img/service-crew.jpg",
+    "title": "U.S. and Vietnam Navy Sailors congratulate each other after a friendly volleyball competition",
+    "creator": "#PACOM",
+    "creator_url": "https://www.flickr.com/photos/34975434@N08",
+    "license": "by-nc-nd",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-nd/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/34975434@N08/8681792978",
+    "source": "flickr"
+  },
+  "service-emergency": {
+    "src": "assets/img/service-emergency.jpg",
+    "title": "Chincoteague SPC-SW",
+    "creator": "Coast Guard News",
+    "creator_url": "https://www.flickr.com/photos/23412076@N06",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/23412076@N06/3048873030",
+    "source": "flickr"
+  },
+  "coverage-caribbean": {
+    "src": "assets/img/coverage-caribbean.jpg",
+    "title": "DSC02106, Limon, Costa Rica",
+    "creator": "lyng883",
+    "creator_url": "https://www.flickr.com/photos/87616709@N00",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/87616709@N00/133056225",
+    "source": "flickr"
+  },
+  "coverage-pacific": {
+    "src": "assets/img/coverage-pacific.jpg",
+    "title": "Quepos-plains-pacific-ocean-view-from-concepcion-mountain-costa-rica",
+    "creator": "Tarrazu (talk) (Uploads)",
+    "creator_url": "https://en.wikipedia.org/wiki/User:Tarrazu",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=18036642",
+    "source": "wikimedia"
+  },
+  "industry-tanker": {
+    "src": "assets/img/industry-tanker.jpg",
+    "title": "FINNSUN",
+    "creator": "Wolfgang.W. ",
+    "creator_url": "https://www.flickr.com/photos/36288065@N04",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/36288065@N04/7422361394",
+    "source": "flickr"
+  },
+  "industry-bulk": {
+    "src": "assets/img/industry-bulk.jpg",
+    "title": "MV Sea Charente - Beset With Gulls",
+    "creator": "Sir Hectimere",
+    "creator_url": "https://www.flickr.com/photos/16179216@N07",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/16179216@N07/7570268050",
+    "source": "flickr"
+  },
+  "industry-cruise": {
+    "src": "assets/img/industry-cruise.jpg",
+    "title": "Nassau - Four Cruise Ships",
+    "creator": "roger4336",
+    "creator_url": "https://www.flickr.com/photos/24736216@N07",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/24736216@N07/7109374535",
+    "source": "flickr"
+  },
+  "process-arrival": {
+    "src": "assets/img/process-arrival.jpg",
+    "title": "140303 Cape Elise - 02",
+    "creator": "dave souza",
+    "creator_url": "https://commons.wikimedia.org/wiki/User:Dave_souza",
+    "license": "by-sa",
+    "license_version": "3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=31464749",
+    "source": "wikimedia"
+  }
+}

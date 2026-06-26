@@ -1,0 +1,462 @@
+(function () {
+  "use strict";
+
+  /* ── helpers ─────────────────────────────────────────── */
+  var $ = function(s, r){ return (r||document).querySelector(s); };
+  var $$ = function(s, r){ return Array.from((r||document).querySelectorAll(s)); };
+  var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fineHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  function safe(fn, name) {
+    try { fn(); } catch(e) { console.warn("[" + name + "]", e); }
+  }
+
+  /* ── Nav ──────────────────────────────────────────────── */
+  function initNav() {
+    var nav = $(".nav");
+    if (!nav) return;
+
+    // Scroll state
+    var onScroll = function() {
+      nav.classList.toggle("is-scrolled", window.scrollY > 30);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Hamburger / mobile menu
+    var btn  = $(".nav-hamburger");
+    var menu = $(".mobile-menu");
+    if (!btn || !menu) return;
+
+    btn.addEventListener("click", function() {
+      var open = menu.classList.toggle("is-open");
+      btn.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open);
+      menu.setAttribute("aria-hidden", !open);
+      document.body.style.overflow = open ? "hidden" : "";
+    });
+
+    // Close on link click
+    $$("a", menu).forEach(function(a) {
+      a.addEventListener("click", function() {
+        menu.classList.remove("is-open");
+        btn.classList.remove("is-open");
+        btn.setAttribute("aria-expanded", false);
+        menu.setAttribute("aria-hidden", true);
+        document.body.style.overflow = "";
+      });
+    });
+  }
+
+  /* ── Smooth anchor scroll ─────────────────────────────── */
+  function initAnchorScroll() {
+    document.addEventListener("click", function(e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute("href");
+      if (!id || id === "#") return;
+      var el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      var navH = 80;
+      window.scrollTo({
+        top: el.getBoundingClientRect().top + window.scrollY - navH,
+        behavior: reduced ? "auto" : "smooth"
+      });
+    });
+  }
+
+  /* ── Hero mouse gradient ──────────────────────────────── */
+  function initHeroGradient() {
+    if (!fineHover) return;
+    var grad = $(".hero-gradient");
+    if (!grad) return;
+    var raf = null;
+    var tx = 60, ty = 40;
+    var cx = 60, cy = 40;
+
+    document.addEventListener("mousemove", function(e) {
+      tx = (e.clientX / window.innerWidth)  * 100;
+      ty = (e.clientY / window.innerHeight) * 100;
+    });
+
+    function loop() {
+      cx += (tx - cx) * 0.06;
+      cy += (ty - cy) * 0.06;
+      document.documentElement.style.setProperty("--mx", cx.toFixed(2) + "%");
+      document.documentElement.style.setProperty("--my", cy.toFixed(2) + "%");
+      raf = requestAnimationFrame(loop);
+    }
+    loop();
+  }
+
+  /* ── Scroll reveals (IntersectionObserver) ────────────── */
+  function initReveals() {
+    var els = $$("[data-reveal]");
+    if (!els.length) return;
+
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.01, rootMargin: "0px 0px -3% 0px" });
+
+    els.forEach(function(el) { io.observe(el); });
+
+    // Safety: force-reveal anything still hidden after 6s
+    setTimeout(function() {
+      $$("[data-reveal]:not(.is-visible)").forEach(function(el) {
+        if (el.getBoundingClientRect().top < window.innerHeight * 1.2) {
+          el.classList.add("is-visible");
+        }
+      });
+    }, 6000);
+  }
+
+  /* ── Hero title line reveal ───────────────────────────── */
+  function initHeroReveal() {
+    var lines = $$(".hero-line");
+    lines.forEach(function(line, i) {
+      line.style.opacity = "0";
+      line.style.transform = "translateY(80px)";
+      line.style.transition = "opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1)";
+      line.style.transitionDelay = (0.3 + i * 0.18) + "s";
+      setTimeout(function() {
+        line.style.opacity = "1";
+        line.style.transform = "none";
+      }, 100);
+    });
+
+    // Fade items
+    var fades = $$("[data-reveal='fade']", $(".hero-inner"));
+    fades.forEach(function(el, i) {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(20px)";
+      el.style.transition = "opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)";
+      el.style.transitionDelay = (0.9 + i * 0.12) + "s";
+      setTimeout(function() {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      }, 100);
+    });
+
+    // Stats
+    var stats = $$(".hero-stat[data-reveal]");
+    stats.forEach(function(el, i) {
+      el.style.opacity = "0";
+      el.style.transition = "opacity 0.6s ease";
+      el.style.transitionDelay = (1.2 + i * 0.1) + "s";
+      setTimeout(function() { el.style.opacity = "1"; }, 100);
+    });
+  }
+
+  /* ── Count-up numbers ─────────────────────────────────── */
+  function initCountUp() {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        var el = e.target;
+        var target = parseFloat(el.dataset.countNum || el.dataset.count || el.textContent) || 0;
+        var duration = 1600;
+        var start = performance.now();
+        var isFloat = target !== Math.floor(target);
+
+        function tick(now) {
+          var p = Math.min((now - start) / duration, 1);
+          var ease = 1 - Math.pow(1 - p, 3);
+          var val = target * ease;
+          el.textContent = isFloat ? val.toFixed(1) : Math.round(val).toString();
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = isFloat ? target.toFixed(1) : Math.round(target).toString();
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.05 });
+
+    $$("[data-count], [data-count-num]").forEach(function(el) { io.observe(el); });
+  }
+
+  /* ── Service cards modal ──────────────────────────────── */
+  function initServiceModal() {
+    var modal    = $("#service-modal");
+    var backdrop = $(".service-modal-backdrop");
+    var closeBtn = $(".service-modal-close");
+    var numEl    = $("#modal-num");
+    var titleEl  = $("#modal-title");
+    var descEl   = $("#modal-desc");
+
+    if (!modal) return;
+
+    var data = (window.__OCEANGATE__ || window.__BRAND__ || {}).services || [];
+
+    function open(id) {
+      var svc = data.find(function(s){ return s.id === id; });
+      if (!svc) return;
+      var card = $('[data-service-id="' + id + '"]');
+      var num  = card ? (card.querySelector(".service-num") || {}).textContent : "";
+      numEl.textContent  = num;
+      titleEl.textContent = svc.title;
+      descEl.textContent  = svc.desc;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      closeBtn.focus();
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    $$(".service-expand").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        open(btn.dataset.expand);
+      });
+    });
+
+    if (backdrop) backdrop.addEventListener("click", close);
+    if (closeBtn) closeBtn.addEventListener("click", close);
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && modal.classList.contains("is-open")) close();
+    });
+  }
+
+  /* ── Coverage map port interaction ───────────────────── */
+  function initCoverage() {
+    var portBtns = $$(".port-item");
+    var portDots = $$(".port-dot");
+
+    // Animate all dots in
+    portDots.forEach(function(dot, i) {
+      dot.style.transition = "opacity 0.5s ease " + (0.3 + i * 0.12) + "s, r 0.3s ease";
+    });
+
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        portDots.forEach(function(dot) { dot.style.opacity = "1"; });
+        io.disconnect();
+      });
+    }, { threshold: 0.02 });
+
+    var map = $(".coverage-map");
+    if (map) io.observe(map);
+
+    function activate(portId) {
+      portBtns.forEach(function(b) { b.classList.remove("is-active"); });
+      portDots.forEach(function(d) { d.classList.remove("is-active"); });
+
+      portBtns.forEach(function(b) {
+        if (b.dataset.targetPort === portId) b.classList.add("is-active");
+      });
+      portDots.forEach(function(d) {
+        if (d.dataset.port === portId) d.classList.add("is-active");
+      });
+    }
+
+    portBtns.forEach(function(btn) {
+      btn.addEventListener("click", function() { activate(btn.dataset.targetPort); });
+    });
+    portDots.forEach(function(dot) {
+      dot.addEventListener("click", function() { activate(dot.dataset.port); });
+    });
+  }
+
+  /* ── Ops Center live clock ────────────────────────────── */
+  function initOpsClock() {
+    var el = $("#ops-time");
+    if (!el) return;
+    function tick() {
+      var now = new Date();
+      var h = ("0" + now.getUTCHours()).slice(-2);
+      var m = ("0" + now.getUTCMinutes()).slice(-2);
+      el.textContent = h + ":" + m + " UTC";
+    }
+    tick();
+    setInterval(tick, 30000);
+  }
+
+  /* ── Card hover tilt ──────────────────────────────────── */
+  function initTilt() {
+    if (!fineHover) return;
+    var cards = $$(".service-card, .why-card, .testimonial-card");
+    cards.forEach(function(card) {
+      card.addEventListener("mousemove", function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top)  / rect.height - 0.5;
+        card.style.transform = "perspective(600px) rotateY(" + (x * 5) + "deg) rotateX(" + (-y * 5) + "deg)";
+      });
+      card.addEventListener("mouseleave", function() {
+        card.style.transform = "";
+      });
+    });
+  }
+
+  /* ── Contact form ─────────────────────────────────────── */
+  function initContactForm() {
+    var form   = $("#contact-form");
+    var submit = $("#form-submit");
+    if (!form || !submit) return;
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      submit.classList.add("is-sending");
+      submit.disabled = true;
+
+      // Simulate async send (replace with real fetch in production)
+      setTimeout(function() {
+        submit.classList.remove("is-sending");
+        submit.classList.add("is-done");
+        setTimeout(function() {
+          submit.classList.remove("is-done");
+          submit.disabled = false;
+          form.reset();
+        }, 3000);
+      }, 1800);
+    });
+  }
+
+  /* ── GSAP ScrollTrigger animations ───────────────────── */
+  function initGSAP() {
+    if (!window.gsap || !window.ScrollTrigger) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero parallax on scroll
+    gsap.to(".hero-bg img", {
+      yPercent: 18,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.8
+      }
+    });
+
+    // Process timeline line draw
+    var timeline = $(".process-timeline");
+    if (timeline) {
+      gsap.from(".process-timeline::before", {
+        scaleY: 0,
+        transformOrigin: "top center",
+        duration: 2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".process-timeline",
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 1
+        }
+      });
+    }
+
+    // Section title char reveals
+    $$(".section-title[data-reveal='chars']").forEach(function(el) {
+      var text = el.innerHTML;
+      var wrapped = text.replace(/(\S)/g, function(char) {
+        return '<span class="char-wrap"><span class="char">' + char + '</span></span>';
+      });
+      el.innerHTML = wrapped;
+
+      var chars = $$(".char", el);
+      var io2 = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          chars.forEach(function(c, i) {
+            setTimeout(function() { c.classList.add("is-visible"); }, i * 22);
+          });
+          io2.unobserve(e.target);
+        });
+      }, { threshold: 0.03 });
+      io2.observe(el);
+    });
+
+    // Why cards stagger
+    var whyCards = $$(".why-card");
+    if (whyCards.length) {
+      gsap.from(whyCards, {
+        opacity: 0,
+        y: 30,
+        stagger: 0.08,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".why-grid",
+          start: "top 85%"
+        }
+      });
+    }
+
+    // Industry cards stagger
+    var indCards = $$(".industry-card");
+    if (indCards.length) {
+      gsap.from(indCards, {
+        opacity: 0,
+        y: 24,
+        stagger: 0.07,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".industries-grid",
+          start: "top 85%"
+        }
+      });
+    }
+  }
+
+  /* ── Favicon SVG inline ───────────────────────────────── */
+  function initFavicon() {
+    var existing = $('link[rel="icon"]');
+    if (existing) return; // already set from HTML
+    // fallback inline SVG favicon
+    var link = document.createElement("link");
+    link.rel = "icon";
+    link.type = "image/svg+xml";
+    link.href = "data:image/svg+xml," + encodeURIComponent([
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">',
+      '<rect width="32" height="32" fill="#07111E"/>',
+      '<circle cx="16" cy="16" r="14" stroke="#0B63FF" stroke-width="1.5" fill="none"/>',
+      '<path d="M6 20 Q10 14 16 16 Q22 18 26 12" stroke="#2E9BFF" stroke-width="2" fill="none" stroke-linecap="round"/>',
+      '<path d="M16 8 L14 18 L16 17 L18 18 Z" fill="#FFFFFF"/>',
+      '</svg>'
+    ].join(""));
+    document.head.appendChild(link);
+  }
+
+  /* ── Boot ─────────────────────────────────────────────── */
+  function boot() {
+    safe(initFavicon,      "initFavicon");
+    safe(initNav,          "initNav");
+    safe(initAnchorScroll, "initAnchorScroll");
+    safe(initHeroReveal,   "initHeroReveal");
+    safe(initHeroGradient, "initHeroGradient");
+    safe(initReveals,      "initReveals");
+    safe(initCountUp,      "initCountUp");
+    safe(initServiceModal, "initServiceModal");
+    safe(initCoverage,     "initCoverage");
+    safe(initOpsClock,     "initOpsClock");
+    safe(initTilt,         "initTilt");
+    safe(initContactForm,  "initContactForm");
+
+    if (window.gsap && window.ScrollTrigger) {
+      safe(initGSAP, "initGSAP");
+    }
+
+    document.documentElement.classList.add("is-ready");
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+
+})();

@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack)",
+      "Bash(ls /usr/local/bin/ | grep -E \"node|npm|bun|pnpm\" 2>/dev/null; ls /opt/homebrew/bin/ | grep -E \"node|npm|bun|pnpm\" 2>/dev/null; ls ~/.nvm/versions/node/ 2>/dev/null | head -5)",
+      "Bash(find /Users/macbookpro -maxdepth 4 -name \"node\" -o -name \"npm\" 2>/dev/null | head -10)",
+      "Read(//usr/**)",
+      "Read(//usr/bin/**)",
+      "Bash(ls /pkg/env/global/bin/ 2>/dev/null | head -20)",
+      "Bash(brew install *)",
+      "Bash(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh)",
+      "Bash(bash)",
+      "Bash(python3 -m http.server 8765)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8765/)",
+      "Bash(python3 /tmp/skill-premium/adrian-saenz-hostinger-premium-website/scripts/verify_project.py --project /Users/macbookpro/Desktop/OCEANGATE/oceangate-web)",
+      "Bash(rm -f eslint.config.mjs postcss.config.mjs tsconfig.json next.config.ts next-env.d.ts AGENTS.md CLAUDE.md README.md package.json package-lock.json)",
+      "Bash(rm -rf node_modules src .next public)",
+      "Bash(cp /tmp/skill-premium/adrian-saenz-hostinger-premium-website/templates/htaccess.template /Users/macbookpro/Desktop/OCEANGATE/oceangate-web/.htaccess *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" http://localhost:8765/)",
+      "Bash(mkdir -p /Users/macbookpro/Desktop/OCEANGATE/oceangate-web/.claude)",
+      "Bash(cp -r oceangate-web/assets .)",
+      "Bash(cp -r oceangate-web/lib .)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}
