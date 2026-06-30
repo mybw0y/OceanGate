@@ -229,43 +229,122 @@
 
   /* ── Coverage map port interaction ───────────────────── */
   function initCoverage() {
-    var portBtns = $$(".port-item");
-    var portDots = $$(".port-dot");
+    var portGroups = $$(".port-group");
+    var portBtns   = $$(".port-item");
+    var mapEl      = $(".coverage-map");
+    var mapInner   = $(".coverage-map-inner");
+    var tooltip    = $("#port-tooltip");
+    var ttImg      = $("#tooltip-img");
+    var ttCoast    = $("#tooltip-coast");
+    var ttName     = $("#tooltip-name");
+    var ttDesc     = $("#tooltip-desc");
 
-    // Animate all dots in
-    portDots.forEach(function(dot, i) {
-      dot.style.transition = "opacity 0.5s ease " + (0.3 + i * 0.12) + "s, r 0.3s ease";
+    var portMeta = {
+      moin:       { name: "Moín",       coast: "Caribbean", desc: "CR's largest container terminal & main Atlantic gateway.",      img: "assets/img/moin-demo.png"       },
+      limon:      { name: "Limón",      coast: "Caribbean", desc: "Historic general cargo & cruise operations since 1871.",       img: "assets/img/limon-demo.png"      },
+      puntarenas: { name: "Puntarenas", coast: "Pacific",   desc: "Multi-purpose Pacific hub with ferry & bulk cargo services.",  img: "assets/img/puntarenas-demo.png" },
+      caldera:    { name: "Caldera",    coast: "Pacific",   desc: "Primary Pacific container port — 40 km from San José.",       img: "assets/img/caldera-demo.png"    },
+      quepos:     { name: "Quepos",     coast: "Pacific",   desc: "Marina & fishing port — gateway to Manuel Antonio.",          img: "assets/img/quepos-demo.png"     },
+      golfito:    { name: "Golfito",    coast: "Pacific",   desc: "Southern Gulf port for bulk & offshore vessel support.",      img: "assets/img/golfito-demo.png"    }
+    };
+
+    /* ── Reveal port markers on scroll ── */
+    var markers = $$(".port-group .port-outer, .port-group .port-dot, .port-group .port-center");
+    markers.forEach(function(el, i) {
+      el.style.transitionDelay = (0.28 + i * 0.06) + "s";
     });
 
     var io = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         if (!e.isIntersecting) return;
-        portDots.forEach(function(dot) { dot.style.opacity = "1"; });
+        markers.forEach(function(el) { el.style.opacity = "1"; });
         io.disconnect();
       });
     }, { threshold: 0.02 });
+    if (mapEl) io.observe(mapEl);
 
-    var map = $(".coverage-map");
-    if (map) io.observe(map);
+    /* ── Tooltip positioning ── */
+    function showTooltip(portId, groupEl) {
+      if (!tooltip || !mapInner) return;
+      var meta = portMeta[portId];
+      if (!meta) return;
+      ttName.textContent  = meta.name;
+      ttCoast.textContent = meta.coast + " Coast";
+      ttDesc.textContent  = meta.desc;
+      if (ttImg) { ttImg.src = meta.img; ttImg.alt = meta.name; }
+
+      var dot = groupEl.querySelector(".port-dot");
+      var ref = dot ? dot.getBoundingClientRect() : groupEl.getBoundingClientRect();
+      var box = mapInner.getBoundingClientRect();
+      var cx  = ref.left - box.left + ref.width  / 2;
+      var cy  = ref.top  - box.top  + ref.height / 2;
+      var ttW = 205, ttH = 155, gap = 14;
+      var left = Math.max(8, Math.min(cx - ttW / 2, box.width - ttW - 8));
+      var top  = cy - ttH - gap;
+      if (top < 8) top = cy + gap;
+      tooltip.style.left = left + "px";
+      tooltip.style.top  = top  + "px";
+      tooltip.classList.add("is-visible");
+    }
+
+    function hideTooltip() {
+      if (tooltip) tooltip.classList.remove("is-visible");
+    }
 
     function activate(portId) {
-      portBtns.forEach(function(b) { b.classList.remove("is-active"); });
-      portDots.forEach(function(d) { d.classList.remove("is-active"); });
-
+      portBtns.forEach(function(b)  { b.classList.remove("is-active"); });
+      portGroups.forEach(function(g){ g.classList.remove("is-active"); });
       portBtns.forEach(function(b) {
         if (b.dataset.targetPort === portId) b.classList.add("is-active");
       });
-      portDots.forEach(function(d) {
-        if (d.dataset.port === portId) d.classList.add("is-active");
+      portGroups.forEach(function(g) {
+        if (g.dataset.port === portId) g.classList.add("is-active");
       });
     }
 
+    function deactivate() {
+      portBtns.forEach(function(b)  { b.classList.remove("is-active"); });
+      portGroups.forEach(function(g){ g.classList.remove("is-active"); });
+      hideTooltip();
+    }
+
+    /* ── Port group events ── */
+    portGroups.forEach(function(group) {
+      var pid = group.dataset.port;
+      if (fineHover) {
+        group.addEventListener("mouseenter", function() { activate(pid); showTooltip(pid, group); });
+        group.addEventListener("mouseleave", deactivate);
+      } else {
+        group.addEventListener("click", function() {
+          var already = group.classList.contains("is-active");
+          deactivate();
+          if (!already) { activate(pid); showTooltip(pid, group); }
+        });
+      }
+    });
+
+    /* ── Port card events ── */
     portBtns.forEach(function(btn) {
-      btn.addEventListener("click", function() { activate(btn.dataset.targetPort); });
+      var pid = btn.dataset.targetPort;
+      var grp = $(".port-group[data-port='" + pid + "']");
+      if (fineHover) {
+        btn.addEventListener("mouseenter", function() { activate(pid); if (grp) showTooltip(pid, grp); });
+        btn.addEventListener("mouseleave", deactivate);
+      } else {
+        btn.addEventListener("click", function() {
+          var already = btn.classList.contains("is-active");
+          deactivate();
+          if (!already) { activate(pid); if (grp) showTooltip(pid, grp); }
+        });
+      }
     });
-    portDots.forEach(function(dot) {
-      dot.addEventListener("click", function() { activate(dot.dataset.port); });
-    });
+
+    /* ── Hide tooltip when clicking outside ── */
+    if (!fineHover) {
+      document.addEventListener("click", function(e) {
+        if (!e.target.closest(".port-group") && !e.target.closest(".port-item")) deactivate();
+      });
+    }
   }
 
   /* ── Ops Center live clock ────────────────────────────── */

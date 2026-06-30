@@ -34,11 +34,7 @@
   ══════════════════════════════════════════════ -->
   <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <a href="#hero" class="nav-logo" aria-label="OceanGate home">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <circle cx="16" cy="16" r="15" stroke="#0B63FF" stroke-width="1.5"/>
-        <path d="M6 20 Q10 14 16 16 Q22 18 26 12" stroke="#2E9BFF" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M16 8 L14 18 L16 17 L18 18 Z" fill="#FFFFFF"/>
-      </svg>
+      <img src="assets/img/oceangatelogo1.png" alt="OceanGate" width="32" height="32" style="width:96px;height:96px;object-fit:contain;" />
       <span class="nav-logo-text">OceanGate</span>
     </a>
     <ul class="nav-links" role="list">
@@ -93,9 +89,8 @@
         </div>
 
         <h1 class="hero-title">
-          <span class="hero-line" data-reveal="line">Trusted Port Agency</span>
-          <span class="hero-line hero-line--accent" data-reveal="line">&amp;</span>
-          <span class="hero-line" data-reveal="line">Vessel Support</span>
+          <span class="hero-line" data-reveal="line">Port Agency &amp; Vessel Support</span>
+          <span class="hero-line" data-reveal="line">Across <span class="cr-flag-text">Costa Rica.</span></span>
         </h1>
 
         <p class="hero-sub" data-reveal="fade">
@@ -125,20 +120,33 @@
           <span class="hero-stat-value mono" data-count="6">6</span>
           <span class="hero-stat-label">Ports Covered</span>
         </div>
-        <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat" data-reveal="fade">
           <span class="hero-stat-value mono">24/7</span>
           <span class="hero-stat-label">Operations</span>
         </div>
-        <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat" data-reveal="fade">
           <span class="hero-stat-value mono" data-count="45">45</span><span class="hero-stat-value mono">min</span>
           <span class="hero-stat-label">Avg. Response</span>
         </div>
-        <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat" data-reveal="fade">
           <span class="hero-stat-value mono" data-count="98">98</span><span class="hero-stat-value mono">%</span>
           <span class="hero-stat-label">On-Time Record</span>
+        </div>
+        <div class="hero-stat" data-reveal="fade">
+          <span class="hero-stat-value mono">2</span>
+          <span class="hero-stat-label">Coasts Served</span>
+        </div>
+        <div class="hero-stat" data-reveal="fade">
+          <span class="hero-stat-value mono" data-count="15">15</span><span class="hero-stat-value mono">+</span>
+          <span class="hero-stat-label">Years Experience</span>
+        </div>
+        <div class="hero-stat" data-reveal="fade">
+          <span class="hero-stat-value mono" data-count="150">150</span><span class="hero-stat-value mono">+</span>
+          <span class="hero-stat-label">Vessel Calls / Yr</span>
+        </div>
+        <div class="hero-stat" data-reveal="fade">
+          <span class="hero-stat-value mono">IMO</span>
+          <span class="hero-stat-label">Certified Agency</span>
         </div>
       </div>
     </section>
@@ -149,8 +157,8 @@
         <div class="about-grid">
           <div class="about-text">
             <p class="section-label" data-reveal="fade">Who We Are</p>
-            <h2 class="section-title" data-reveal="chars">
-              Precision at<br />every port call.
+            <h2 class="section-title" data-reveal="fade">
+              Precision at every port call.
             </h2>
             <p class="about-body" data-reveal="fade">
               OceanGate is Costa Rica's leading port agency and vessel support company. Founded to bridge the gap between international shipping standards and the operational realities of Costa Rican ports, we serve ship owners, charterers, and operators with the precision, responsiveness, and expertise their operations demand.
@@ -171,14 +179,14 @@
           </div>
           <div class="about-visual" data-reveal="image">
             <div class="about-img-wrap">
-              <img src="assets/img/about.jpg" alt="Cargo ship at sea with ocean horizon" loading="lazy" decoding="async" />
+              <img src="assets/img/vessel-demo.jpg" alt="Cargo ship at sea with ocean horizon" loading="lazy" decoding="async" />
               <div class="about-img-overlay" aria-hidden="true"></div>
             </div>
             <div class="about-badge" aria-hidden="true">
               <span class="about-badge-line" aria-hidden="true"></span>
               <div class="about-badge-inner">
-                <span class="mono about-badge-num">CR</span>
-                <span>Costa Rica<br />National Coverage</span>
+                <span class="mono about-badge-num">Limón CR</span>
+                <span>Pier 5-0<br />Recope Oil Terminal</span>
               </div>
             </div>
           </div>
@@ -306,38 +314,92 @@
         <div class="coverage-layout">
           <div class="coverage-map" aria-label="Map of Costa Rica showing covered ports">
             <div class="coverage-map-inner">
-              <!-- SVG map of Costa Rica -->
-              <svg class="cr-map" viewBox="0 0 400 440" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+              <!-- Port hover tooltip -->
+              <div class="port-tooltip" id="port-tooltip" aria-hidden="true">
+                <img class="port-tooltip-img" id="tooltip-img" src="" alt="" />
+                <div class="port-tooltip-body">
+                  <span class="port-tooltip-coast" id="tooltip-coast"></span>
+                  <strong class="port-tooltip-name" id="tooltip-name"></strong>
+                  <p class="port-tooltip-desc" id="tooltip-desc"></p>
+                </div>
+              </div>
+
+              <!-- Map photo -->
+              <img class="cr-map-img" src="assets/img/services-map.png" alt="Costa Rica port coverage map" loading="lazy" />
+
+              <!-- Interactive port overlay (transparent SVG on top of image) -->
+              <svg class="cr-map cr-map-overlay" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <defs>
-                  <linearGradient id="mapGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#0B2040"/>
-                    <stop offset="100%" stop-color="#071525"/>
-                  </linearGradient>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  <filter id="portGlow" x="-80%" y="-80%" width="260%" height="260%">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                   </filter>
                 </defs>
-                <!-- Costa Rica simplified outline -->
-                <path class="cr-land" d="M80 80 L100 70 L130 65 L160 60 L200 58 L240 62 L280 68 L310 80 L330 95 L335 115 L325 135 L310 150 L295 170 L290 190 L300 210 L310 230 L305 255 L290 275 L270 290 L250 310 L235 330 L220 345 L200 360 L185 370 L170 355 L155 340 L145 320 L130 305 L115 285 L100 265 L88 245 L78 225 L72 205 L70 180 L72 160 L76 140 L78 120 L80 80Z" fill="url(#mapGrad)" stroke="#0B63FF" stroke-width="1" opacity="0.9"/>
-                <!-- Caribbean coast label -->
-                <text x="355" y="160" fill="#2E9BFF" font-size="10" font-family="JetBrains Mono" opacity="0.7" text-anchor="middle">CARIBBEAN</text>
-                <!-- Pacific coast label -->
-                <text x="45" y="280" fill="#2E9BFF" font-size="10" font-family="JetBrains Mono" opacity="0.7" text-anchor="middle">PACIFIC</text>
-                <!-- Port dots - Caribbean -->
-                <circle class="port-dot" data-port="moin" cx="310" cy="145" r="6" fill="#0B63FF" filter="url(#glow)" opacity="0"/>
-                <circle class="port-dot" data-port="limon" cx="320" cy="158" r="6" fill="#0B63FF" filter="url(#glow)" opacity="0"/>
-                <!-- Port dots - Pacific -->
-                <circle class="port-dot" data-port="puntarenas" cx="115" cy="218" r="6" fill="#2E9BFF" filter="url(#glow)" opacity="0"/>
-                <circle class="port-dot" data-port="caldera" cx="105" cy="230" r="6" fill="#2E9BFF" filter="url(#glow)" opacity="0"/>
-                <circle class="port-dot" data-port="quepos" cx="130" cy="280" r="6" fill="#2E9BFF" filter="url(#glow)" opacity="0"/>
-                <circle class="port-dot" data-port="golfito" cx="165" cy="345" r="6" fill="#2E9BFF" filter="url(#glow)" opacity="0"/>
-                <!-- Route lines -->
-                <path class="route-line" d="M310 145 Q320 200 320 158" stroke="#0B63FF" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4" fill="none"/>
-                <path class="route-line" d="M115 218 Q110 224 105 230" stroke="#2E9BFF" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4" fill="none"/>
-                <path class="route-line" d="M105 230 Q118 255 130 280" stroke="#2E9BFF" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4" fill="none"/>
-                <path class="route-line" d="M130 280 Q148 312 165 345" stroke="#2E9BFF" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4" fill="none"/>
+
+                <!-- Route lines (Caribbean) -->
+                <path class="route-animated" d="M265 99 Q274 118 284 138" stroke="#0B63FF" stroke-width="0.9" stroke-dasharray="5 4" fill="none" opacity="0.5"/>
+                <!-- Route lines (Pacific coast) -->
+                <path class="route-animated" d="M118 179 Q143 167 143 154" stroke="#2E9BFF" stroke-width="0.9" stroke-dasharray="5 4" fill="none" opacity="0.45"/>
+                <path class="route-animated" d="M118 179 Q150 188 183 196 Q217 230 252 263" stroke="#2E9BFF" stroke-width="0.9" stroke-dasharray="5 4" fill="none" opacity="0.45"/>
+                <!-- Cross-coast hint -->
+                <path class="route-animated" d="M143 154 Q200 145 265 99" stroke="#1B4FBB" stroke-width="0.6" stroke-dasharray="3 6" fill="none" opacity="0.2"/>
+
+                <!-- Moín (Caribbean) cx≈265 cy≈99 -->
+                <g class="port-group" data-port="moin" style="cursor:pointer">
+                  <circle class="port-ring" cx="265" cy="99" r="15" fill="none" stroke="#0B63FF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="265" cy="99" r="10" fill="rgba(11,99,255,0.18)" stroke="#0B63FF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="265" cy="99" r="5.5" fill="#0B63FF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="265" cy="99" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="265" y="82" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">MOÍN</text>
+                </g>
+
+                <!-- Limón (Caribbean) cx≈284 cy≈138 -->
+                <g class="port-group" data-port="limon" style="cursor:pointer">
+                  <circle class="port-ring" cx="284" cy="138" r="15" fill="none" stroke="#0B63FF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="284" cy="138" r="10" fill="rgba(11,99,255,0.18)" stroke="#0B63FF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="284" cy="138" r="5.5" fill="#0B63FF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="284" cy="138" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="284" y="121" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">LIMÓN</text>
+                </g>
+
+                <!-- Caldera (Pacific) cx≈143 cy≈154 -->
+                <g class="port-group" data-port="caldera" style="cursor:pointer">
+                  <circle class="port-ring" cx="143" cy="154" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="143" cy="154" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="143" cy="154" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="143" cy="154" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="143" y="137" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">CALDERA</text>
+                </g>
+
+                <!-- Puntarenas (Pacific) cx≈118 cy≈179 -->
+                <g class="port-group" data-port="puntarenas" style="cursor:pointer">
+                  <circle class="port-ring" cx="118" cy="179" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="118" cy="179" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="118" cy="179" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="118" cy="179" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="118" y="162" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">PUNTARENAS</text>
+                </g>
+
+                <!-- Quepos (Pacific) cx≈183 cy≈196 -->
+                <g class="port-group" data-port="quepos" style="cursor:pointer">
+                  <circle class="port-ring" cx="183" cy="196" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="183" cy="196" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="183" cy="196" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="183" cy="196" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="183" y="179" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">QUEPOS</text>
+                </g>
+
+                <!-- Golfito (Pacific) cx≈252 cy≈263 -->
+                <g class="port-group" data-port="golfito" style="cursor:pointer">
+                  <circle class="port-ring" cx="252" cy="263" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="252" cy="263" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="252" cy="263" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="252" cy="263" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="252" y="246" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">GOLFITO</text>
+                </g>
               </svg>
+
             </div>
           </div>
 
@@ -503,7 +565,7 @@
     <!-- PROCESS -->
     <section class="process section-padding" id="process" aria-label="Operational Process">
       <div class="process-bg" aria-hidden="true">
-        <img src="assets/img/process-arrival.jpg" alt="" loading="lazy" decoding="async" aria-hidden="true" />
+        <img src="assets/img/hero2.jpg" alt="" loading="lazy" decoding="async" aria-hidden="true" />
         <div class="process-bg-tint" aria-hidden="true"></div>
       </div>
       <div class="container">
@@ -773,11 +835,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="#hero" class="nav-logo" aria-label="OceanGate home">
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-              <circle cx="16" cy="16" r="15" stroke="#0B63FF" stroke-width="1.5"/>
-              <path d="M6 20 Q10 14 16 16 Q22 18 26 12" stroke="#2E9BFF" stroke-width="2" fill="none" stroke-linecap="round"/>
-              <path d="M16 8 L14 18 L16 17 L18 18 Z" fill="#FFFFFF"/>
-            </svg>
+            <img src="assets/img/oceangatelogo1.png" alt="OceanGate" width="96" height="96" style="width:96px;height:96px;object-fit:contain;" />
             <span>OceanGate</span>
           </a>
           <p>Shipping Services Hand to Hand with Sea.</p>

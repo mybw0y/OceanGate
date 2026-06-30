@@ -26,7 +26,7 @@
   --container: 1280px;
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --section-gap: clamp(80px, 10vw, 160px);
-  --nav-h: 72px;
+  --nav-h: 108px;
 }
 
 /* =============================================================
@@ -501,17 +501,19 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.05; }
   -webkit-backdrop-filter: blur(20px);
 }
 .hero-stat {
-  padding: 1.2rem var(--gutter);
+  padding: .75rem var(--gutter);
   display: flex;
   flex-direction: column;
-  gap: .25rem;
+  gap: .15rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
-.hero-stat-divider {
-  border-left: 1px solid var(--line);
-}
+.hero-stat:nth-child(4n) { border-right: none; }
+.hero-stat:nth-child(n+5) { border-bottom: none; }
+.hero-stat-divider { display: none; }
 .hero-stat-value {
   font-family: var(--display);
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-size: clamp(1.3rem, 2.2vw, 1.9rem);
   color: var(--white);
   line-height: 1;
   letter-spacing: .02em;
@@ -816,21 +818,14 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.05; }
 .coverage-map-inner {
   background: var(--navy-2);
   border: 1px solid var(--line);
-  padding: 2rem;
+  padding: 0;
   position: relative;
   overflow: hidden;
 }
-.coverage-map-inner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(11,99,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(11,99,255,.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
 
-.cr-map { width: 100%; max-width: 380px; margin-inline: auto; }
+.cr-map { width: 100%; display: block; }
+.cr-map-img { width: 100%; display: block; }
+.cr-map-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
 .cr-land { }
 .port-dot {
   transition: opacity .4s var(--ease-out), r .3s var(--ease-out);
@@ -896,6 +891,111 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.05; }
 .port-item .mono { color: var(--gray-dim); }
 .port-item-arr { color: var(--gray-dim); font-size: .85rem; transition: color .2s, transform .2s; }
 .port-item:hover .port-item-arr { color: var(--electric); transform: translateX(3px); }
+
+/* ── Premium port map ─────────────────────────── */
+@keyframes portPulse {
+  0%   { transform: scale(1);   opacity: .65; }
+  100% { transform: scale(2.6); opacity: 0;   }
+}
+@keyframes dashFlow {
+  from { stroke-dashoffset: 18; }
+  to   { stroke-dashoffset: 0;  }
+}
+
+.route-animated { animation: dashFlow 2.4s linear infinite; }
+
+.port-group { cursor: pointer; }
+
+.port-group .port-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+.port-group.is-active .port-ring {
+  animation: portPulse 1.8s ease-out infinite;
+}
+.port-group .port-outer,
+.port-group .port-dot,
+.port-group .port-center {
+  transition: opacity .5s var(--ease-out);
+}
+.port-group .port-label {
+  transition: opacity .25s ease;
+  pointer-events: none;
+}
+.port-group.is-active .port-label { opacity: 1 !important; }
+.port-group.is-active .port-dot   { filter: url(#portGlow); }
+
+/* Port tooltip */
+.port-tooltip {
+  position: absolute;
+  width: 205px;
+  background: rgba(4,10,20,.96);
+  border: 1px solid rgba(11,99,255,.38);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px) scale(.97);
+  transition: opacity .22s ease, transform .22s ease;
+  z-index: 20;
+  box-shadow: 0 14px 44px rgba(0,0,0,.65), 0 0 0 1px rgba(11,99,255,.06);
+}
+.port-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.port-tooltip-img {
+  width: 100%;
+  height: 76px;
+  object-fit: cover;
+  display: block;
+}
+.port-tooltip-body { padding: .6rem .9rem .75rem; }
+.port-tooltip-coast {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: .18rem;
+}
+.port-tooltip-name {
+  display: block;
+  font-size: .875rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .28rem;
+}
+.port-tooltip-desc {
+  font-size: .72rem;
+  color: var(--gray);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Costa Rica flag text */
+.cr-flag-text {
+  background: linear-gradient(
+    180deg,
+    #002B7F 0%,
+    #002B7F 20%,
+    #FFFFFF 20%,
+    #FFFFFF 35%,
+    #CE1126 35%,
+    #CE1126 65%,
+    #FFFFFF 65%,
+    #FFFFFF 80%,
+    #002B7F 80%,
+    #002B7F 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
 
 /* =============================================================
    11. INDUSTRIES
@@ -1423,7 +1523,10 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.05; }
 /* Mobile-specific overrides */
 @media (max-width: 719px) {
   .hero-stats { grid-template-columns: repeat(2, 1fr); }
-  .hero-stat-divider:nth-child(4) { display: none; }
+  .hero-stat:nth-child(4n) { border-right: 1px solid var(--line); }
+  .hero-stat:nth-child(2n) { border-right: none; }
+  .hero-stat:nth-child(n+5) { border-bottom: 1px solid var(--line); }
+  .hero-stat:nth-child(n+7) { border-bottom: none; }
   .hero-scroll-indicator { display: none; }
   .services-grid { grid-template-columns: 1fr; }
   .coverage-layout { grid-template-columns: 1fr; }
