@@ -1017,37 +1017,41 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.05; }
   gap: 1.5rem;
 }
 .industry-card {
-  background: rgba(255,255,255,.025);
   border: 1px solid var(--line);
-  padding: 2.5rem 2rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  transition: background .3s, border-color .3s, transform .3s var(--ease-out);
+  align-items: stretch;
+  transition: border-color .3s, transform .3s var(--ease-out), box-shadow .3s;
   transition-delay: var(--delay, 0s);
   position: relative;
   overflow: hidden;
+  background: rgba(7,17,30,.9);
 }
 .industry-card::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(11,99,255,.05) 0%, transparent 60%);
+  background: linear-gradient(160deg, rgba(11,99,255,.1) 0%, transparent 65%);
   opacity: 0;
   transition: opacity .3s;
+  pointer-events: none;
 }
-.industry-card:hover { background: rgba(11,99,255,.07); border-color: rgba(11,99,255,.25); transform: translateY(-4px); }
+.industry-card:hover { border-color: rgba(11,99,255,.4); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(11,99,255,.18); }
 .industry-card:hover::after { opacity: 1; }
-
-.industry-icon {
-  width: 72px; height: 72px;
-  color: var(--electric);
-  opacity: .7;
-  transition: opacity .3s;
+.industry-vessel-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+  display: block;
+  padding: 1.5rem 1.5rem 0;
+  filter: drop-shadow(0 0 18px rgba(11,99,255,.45));
 }
-.industry-card:hover .industry-icon { opacity: 1; }
-.industry-icon svg { width: 100%; height: 100%; }
+.industry-card-body {
+  padding: 1rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+}
 
 .industry-card h3 {
   font-family: var(--display);

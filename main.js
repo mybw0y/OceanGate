@@ -483,9 +483,11 @@
         stagger: 0.07,
         duration: 0.6,
         ease: "power2.out",
+        clearProps: "opacity,transform",
         scrollTrigger: {
           trigger: ".industries-grid",
-          start: "top 85%"
+          start: "top 90%",
+          once: true
         }
       });
     }
