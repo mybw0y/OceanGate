@@ -80,12 +80,29 @@
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml font/woff font/woff2
 </IfModule>
 
-# ----- HTTPS redirect (uncomment if your domain has SSL) -----
-# <IfModule mod_rewrite.c>
-#   RewriteEngine On
-#   RewriteCond %{HTTPS} !=on
-#   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-# </IfModule>
+# ----- HTTPS + www canonicalization -----
+#
+# ATENCION: estas reglas fuerzan https://oceangatecr.com. Solo suba este
+# archivo DESPUES de que el SSL aparezca activo en el panel de Hostinger.
+# Si el certificado todavia no esta emitido, el navegador redirige a una
+# URL https que no existe y el sitio queda caido con error de certificado.
+#
+# Se envia a la version sin www porque es la que declara el <link rel="canonical">
+# de index.html. Si algun dia prefiere www, hay que cambiar ambos a la vez.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Forzar HTTPS. Se consulta tambien X-Forwarded-Proto porque en Hostinger
+  # el TLS termina en un proxy y %{HTTPS} llega vacio: sin esa condicion la
+  # regla se dispara siempre y produce un bucle de redirecciones.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^(.*)$ https://oceangatecr.com/$1 [R=301,L]
+
+  # Quitar el www para no tener dos URLs compitiendo por el mismo contenido.
+  RewriteCond %{HTTP_HOST} ^www\.oceangatecr\.com$ [NC]
+  RewriteRule ^(.*)$ https://oceangatecr.com/$1 [R=301,L]
+</IfModule>
 
 # ----- Pretty URLs: serve "/about" as "/about.html" (uncomment if multi-page) -----
 # <IfModule mod_rewrite.c>

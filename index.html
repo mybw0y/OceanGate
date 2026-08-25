@@ -9,20 +9,25 @@
   <meta property="og:title" content="OceanGate — Port Agency &amp; Vessel Support" />
   <meta property="og:description" content="Trusted maritime agency across Costa Rica. 24/7 operations. International standards." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/hero.jpg" />
+  <meta property="og:url" content="https://oceangatecr.com/" />
+  <!-- og:image y twitter:image deben ser URLs absolutas: los scrapers de
+       redes sociales no resuelven rutas relativas. -->
+  <meta property="og:image" content="https://oceangatecr.com/assets/img/hero.jpg" />
   <meta property="og:image:width" content="3840" />
   <meta property="og:image:height" content="2160" />
+  <meta property="og:image:alt" content="Container port at night with cranes and vessels" />
   <meta property="og:site_name" content="OceanGate" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="es_CR" />
-  <!-- TODO: al tener el dominio, agregar aqui og:url y <link rel="canonical">,
-       y crear robots.txt y sitemap.xml. Sin el dominio real un canonical
-       equivocado hace mas dano que no ponerlo. -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="OceanGate — Port Agency &amp; Vessel Support" />
   <meta name="twitter:description" content="Trusted maritime agency across Costa Rica. 24/7 operations. International standards." />
-  <meta name="twitter:image" content="assets/img/hero.jpg" />
+  <meta name="twitter:image" content="https://oceangatecr.com/assets/img/hero.jpg" />
   <meta name="theme-color" content="#07111E" />
+
+  <!-- Canonical: sin www. El .htaccess redirige www -> raiz para que no
+       queden dos URLs compitiendo por el mismo contenido. -->
+  <link rel="canonical" href="https://oceangatecr.com/" />
   <link rel="apple-touch-icon" href="assets/img/oceangatelogo1.png" />
 
   <!-- Favicon -->
