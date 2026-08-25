@@ -275,13 +275,13 @@
     var ttDesc     = $("#tooltip-desc");
 
     var portMeta = {
-      moin:       { name: "Moín",       coast: "Caribbean", desc: "CR's largest container terminal & main Atlantic gateway.",      img: "assets/img/moin-demo.png"       },
-      limon:      { name: "Limón",      coast: "Caribbean", desc: "Historic general cargo & cruise operations since 1871.",       img: "assets/img/limon-demo.png"      },
-      puntarenas: { name: "Puntarenas", coast: "Pacific",   desc: "Multi-purpose Pacific hub with ferry & bulk cargo services.",  img: "assets/img/puntarenas-demo.png" },
-      caldera:    { name: "Caldera",    coast: "Pacific",   desc: "Primary Pacific container port — 40 km from San José.",       img: "assets/img/caldera-demo.png"    },
-      quepos:     { name: "Quepos",     coast: "Pacific",   desc: "Marina & fishing port — gateway to Manuel Antonio.",          img: "assets/img/quepos-demo.png"     },
-      "punta-morales": { name: "Punta Morales", coast: "Pacific", desc: "Bulk & agricultural terminal on the Nicoya Gulf — grain, fertiliser, and agro-export operations.", img: "assets/img/punta-morales1.png" },
-      golfito:    { name: "Golfito",    coast: "Pacific",   desc: "Southern Gulf port for bulk & offshore vessel support.",      img: "assets/img/golfito-demo.png"    }
+      moin:       { name: "Moín",       coast: "Caribbean", desc: "CR's largest container terminal & main Atlantic gateway.",      img: "assets/img/moin-demo.webp"       },
+      limon:      { name: "Limón",      coast: "Caribbean", desc: "Historic general cargo & cruise operations since 1871.",       img: "assets/img/limon-demo.webp"      },
+      puntarenas: { name: "Puntarenas", coast: "Pacific",   desc: "Multi-purpose Pacific hub with ferry & bulk cargo services.",  img: "assets/img/puntarenas-demo.webp" },
+      caldera:    { name: "Caldera",    coast: "Pacific",   desc: "Primary Pacific container port — 40 km from San José.",       img: "assets/img/caldera-demo.webp"    },
+      quepos:     { name: "Quepos",     coast: "Pacific",   desc: "Marina & fishing port — gateway to Manuel Antonio.",          img: "assets/img/quepos-demo.webp"     },
+      "punta-morales": { name: "Punta Morales", coast: "Pacific", desc: "Bulk & agricultural terminal on the Nicoya Gulf — grain, fertiliser, and agro-export operations.", img: "assets/img/punta-morales1.webp" },
+      golfito:    { name: "Golfito",    coast: "Pacific",   desc: "Southern Gulf port for bulk & offshore vessel support.",      img: "assets/img/golfito-demo.webp"    }
     };
 
     /* ── Reveal port markers on scroll ── */
