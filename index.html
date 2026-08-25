@@ -9,6 +9,8 @@
   <meta property="og:title" content="OceanGate — Port Agency &amp; Vessel Support" />
   <meta property="og:description" content="Trusted maritime agency across Costa Rica. 24/7 operations. International standards." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/hero.jpg" />
+  <link rel="apple-touch-icon" href="assets/img/oceangatelogo1.png" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
@@ -38,13 +40,19 @@
       <span class="nav-logo-text">OceanGate</span>
     </a>
     <ul class="nav-links" role="list">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#coverage">Coverage</a></li>
-      <li><a href="#industries">Industries</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="#coverage" data-i18n="nav.coverage">Coverage</a></li>
+      <li><a href="#industries" data-i18n="nav.industries">Industries</a></li>
+      <li><a href="#why" data-i18n="nav.why">Why Us</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta btn-primary">Request Assistance</a>
+    <a href="#contact" class="nav-cta btn-primary" data-i18n="nav.cta">Request Assistance</a>
+    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+      <span class="lang-toggle-current">EN</span>
+      <span class="lang-toggle-sep" aria-hidden="true">|</span>
+      <span class="lang-toggle-other">ES</span>
+    </button>
     <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
     </button>
@@ -53,16 +61,16 @@
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
     <ul role="list">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#coverage">Coverage</a></li>
-      <li><a href="#industries">Industries</a></li>
-      <li><a href="#why">Why OceanGate</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="#coverage" data-i18n="nav.coverage">Coverage</a></li>
+      <li><a href="#industries" data-i18n="nav.industries">Industries</a></li>
+      <li><a href="#why" data-i18n="mob.why">Why OceanGate</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="btn-primary">Request Assistance →</a>
+    <a href="#contact" class="btn-primary" data-i18n="mob.cta">Request Assistance →</a>
     <div class="mobile-menu-contact">
-      <span>Emergency Line</span>
+      <span data-i18n="mob.emergency">Emergency Line</span>
       <a href="tel:+50688880000">+506 8888-0000</a>
     </div>
   </div>
@@ -85,95 +93,97 @@
       <div class="hero-inner container">
         <div class="hero-meta">
           <span class="live-dot" aria-hidden="true"></span>
-          <span class="mono">Operations Active · 24/7</span>
+          <span class="mono" data-i18n="hero.live">Operations Active · 24/7</span>
         </div>
 
         <h1 class="hero-title">
-          <span class="hero-line" data-reveal="line">Port Agency &amp; Vessel Support</span>
-          <span class="hero-line" data-reveal="line">Across <span class="cr-flag-text">Costa Rica</span></span>
+          <span class="hero-line" data-reveal="line" data-i18n="hero.line1">Port Agency &amp; Vessel Support</span>
+          <span class="hero-line" data-reveal="line" data-i18n-html="hero.line2">Across <span class="cr-flag-text">Costa Rica</span></span>
         </h1>
 
         <p class="hero-sub" data-reveal="fade">
-          <span>Across Costa Rica</span>
+          <span data-i18n="hero.sub.carib">Caribbean</span>
           <span class="hero-sub-sep" aria-hidden="true">·</span>
-          <span>Caribbean &amp; Pacific</span>
+          <span data-i18n="hero.sub.pac">Pacific</span>
+          <span class="hero-sub-sep" aria-hidden="true">·</span>
+          <span data-i18n="hero.sub.ports">7 Ports</span>
+          <span class="hero-sub-sep" aria-hidden="true">·</span>
+          <span data-i18n="hero.sub.since">Since 2018</span>
         </p>
 
-        <p class="hero-desc" data-reveal="fade">
+        <p class="hero-desc" data-reveal="fade" data-i18n="hero.desc">
           Local expertise. International standards. Available 24/7.
         </p>
 
         <div class="hero-actions" data-reveal="fade">
-          <a href="#contact" class="btn-primary">Request Assistance <span aria-hidden="true">→</span></a>
-          <a href="#services" class="btn-ghost">Explore Services</a>
+          <a href="#contact" class="btn-primary" data-i18n="hero.cta1">Request Assistance <span aria-hidden="true">→</span></a>
+          <a href="#services" class="btn-ghost" data-i18n="hero.cta2">Explore Services</a>
         </div>
       </div>
 
       <div class="hero-scroll-indicator" aria-hidden="true">
         <div class="hero-scroll-line"></div>
-        <span class="mono">Scroll</span>
+        <span class="mono" data-i18n="hero.scroll">Scroll</span>
       </div>
 
       <!-- Stats bar -->
-      <div class="hero-stats" aria-label="Key statistics">
-        <div class="hero-stat" data-reveal="fade">
-          <span class="hero-stat-value mono" data-count="6">6</span>
-          <span class="hero-stat-label">Ports Covered</span>
+      <div class="hero-audience" aria-label="Who we serve">
+        <div class="hero-audience-header">
+          <span class="hero-audience-eyebrow mono" data-i18n="hero.aud.eyebrow">For Ship Owners, Charterers &amp; Operators</span>
+          <p class="hero-audience-sub" data-i18n="hero.aud.sub">Built for ship owners, charterers and operators who need reliable local execution.</p>
         </div>
-        <div class="hero-stat" data-reveal="fade">
-          <span class="hero-stat-value mono">24/7</span>
-          <span class="hero-stat-label">Operations</span>
-        </div>
-        <div class="hero-stat" data-reveal="fade">
-          <span class="hero-stat-value mono" data-count="45">45</span><span class="hero-stat-value mono">min</span>
-          <span class="hero-stat-label">Avg. Response</span>
-        </div>
-        <div class="hero-stat" data-reveal="fade">
-          <span class="hero-stat-value mono" data-count="98">98</span><span class="hero-stat-value mono">%</span>
-          <span class="hero-stat-label">On-Time Record</span>
-        </div>
-        <div class="hero-stat" data-reveal="fade">
-          <span class="hero-stat-value mono">2</span>
-          <span class="hero-stat-label">Coasts Served</span>
-        </div>
-        <div class="hero-stat" data-reveal="fade">
-          <span class="hero-stat-value mono" data-count="15">15</span><span class="hero-stat-value mono">+</span>
-          <span class="hero-stat-label">Years Experience</span>
-        </div>
-        <div class="hero-stat" data-reveal="fade">
-          <span class="hero-stat-value mono" data-count="150">150</span><span class="hero-stat-value mono">+</span>
-          <span class="hero-stat-label">Vessel Calls / Yr</span>
-        </div>
-        <div class="hero-stat" data-reveal="fade">
-          <span class="hero-stat-value mono">IMO</span>
-          <span class="hero-stat-label">Certified Agency</span>
+        <div class="hero-audience-cards">
+          <div class="hero-audience-card" data-reveal="fade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 17h18M5 17V9l7-5 7 5v8"/><path d="M9 17v-5h6v5"/></svg>
+            <span data-i18n="hero.aud.owners">Ship Owners</span>
+          </div>
+          <div class="hero-audience-card" data-reveal="fade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 11h.01M12 11h.01M16 11h.01"/></svg>
+            <span data-i18n="hero.aud.charterers">Charterers</span>
+          </div>
+          <div class="hero-audience-card" data-reveal="fade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+            <span data-i18n="hero.aud.operators">Vessel Operators</span>
+          </div>
+          <div class="hero-audience-card" data-reveal="fade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <span data-i18n="hero.aud.captains">Captains &amp; Masters</span>
+          </div>
+          <div class="hero-audience-card" data-reveal="fade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span data-i18n="hero.aud.supers">Marine Superintendents</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section class="about section-padding" id="about" aria-label="About OceanGate">
+      <span class="ship-wrap ship-wrap--rtl" aria-hidden="true" style="bottom:8%">
+        <img src="assets/img/tanker1.png" class="sailing-ship-img" alt="" />
+        <span class="ship-wake ship-wake--rtl"></span>
+      </span>
       <div class="container">
         <div class="about-grid">
           <div class="about-text">
-            <p class="section-label" data-reveal="fade">Who We Are</p>
-            <h2 class="section-title" data-reveal="fade">
+            <p class="section-label" data-reveal="fade" data-i18n="about.label">Who We Are</p>
+            <h2 class="section-title" data-reveal="fade" data-i18n="about.title">
               Precision at every port call.
             </h2>
-            <p class="about-body" data-reveal="fade">
+            <p class="about-body" data-reveal="fade" data-i18n="about.body1">
               OceanGate is Costa Rica's leading port agency and vessel support company. Founded to bridge the gap between international shipping standards and the operational realities of Costa Rican ports, we serve ship owners, charterers, and operators with the precision, responsiveness, and expertise their operations demand.
             </p>
-            <p class="about-body" data-reveal="fade">
+            <p class="about-body" data-reveal="fade" data-i18n="about.body2">
               From the Caribbean terminals at Moín and Limón to the Pacific ports of Caldera, Puntarenas, Quepos, and Golfito — our teams are on the ground, around the clock.
             </p>
             <div class="about-values" data-reveal="fade">
               <div class="about-value">
                 <span class="about-value-dot" aria-hidden="true"></span>
-                <span>Mission: To deliver world-class maritime agency services with local knowledge and global standards.</span>
+                <span data-i18n="about.mission">Mission: To deliver world-class maritime agency services with local knowledge and global standards.</span>
               </div>
               <div class="about-value">
                 <span class="about-value-dot" aria-hidden="true"></span>
-                <span>Vision: To be the most trusted name in Central American maritime operations.</span>
+                <span data-i18n="about.vision">Vision: To be the most trusted name in Central American maritime operations.</span>
               </div>
             </div>
           </div>
@@ -186,7 +196,7 @@
               <span class="about-badge-line" aria-hidden="true"></span>
               <div class="about-badge-inner">
                 <span class="mono about-badge-num">Limón CR</span>
-                <span>Pier 5-0<br />Recope Oil Terminal</span>
+                <span data-i18n-html="about.badge">Pier 5-0<br />Recope Oil Terminal</span>
               </div>
             </div>
           </div>
@@ -194,14 +204,40 @@
       </div>
     </section>
 
+    <!-- DOCS & COMPLIANCE BAND -->
+    <div class="docs-band" aria-label="Documents and Compliance">
+      <div class="container docs-band-inner">
+        <div class="docs-band-header">
+          <span class="mono docs-band-eyebrow" data-i18n="docs.eyebrow">Documents &amp; Compliance</span>
+          <p class="docs-band-tagline" data-i18n="docs.tagline">Documentation handled with precision.</p>
+        </div>
+        <ul class="docs-band-list" aria-label="Compliance services">
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="2,8 6,12 14,4"/></svg><span data-i18n="docs.1">Port clearance</span></li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="2,8 6,12 14,4"/></svg><span data-i18n="docs.2">Customs coordination</span></li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="2,8 6,12 14,4"/></svg><span data-i18n="docs.3">Immigration support</span></li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="2,8 6,12 14,4"/></svg><span data-i18n="docs.4">Crew documentation</span></li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="2,8 6,12 14,4"/></svg><span data-i18n="docs.5">Disbursement accounts</span></li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="2,8 6,12 14,4"/></svg><span data-i18n="docs.6">Post-call reports</span></li>
+        </ul>
+      </div>
+    </div>
+
     <!-- SERVICES -->
     <section class="services section-padding" id="services" aria-label="Services">
+      <span class="ship-wrap ship-wrap--ltr" aria-hidden="true" style="bottom:5%">
+        <img src="assets/img/bulk1.png" class="sailing-ship-img" alt="" />
+        <span class="ship-wake ship-wake--ltr"></span>
+      </span>
+      <span class="ship-wrap ship-wrap--rtl" aria-hidden="true" style="bottom:22%; animation-delay:-14s">
+        <img src="assets/img/container1.png" class="sailing-ship-img" alt="" />
+        <span class="ship-wake ship-wake--rtl"></span>
+      </span>
       <div class="services-bg" aria-hidden="true"></div>
       <div class="container">
         <div class="section-header" data-reveal="fade">
-          <p class="section-label">What We Do</p>
-          <h2 class="section-title">Maritime services<br /><em>built for results.</em></h2>
-          <p class="section-desc">From port agency to emergency response — every service designed around uptime, compliance, and the operational tempo of international shipping.</p>
+          <p class="section-label" data-i18n="svc.label">What We Do</p>
+          <h2 class="section-title" data-i18n-html="svc.title">Maritime services<br /><em>built for results.</em></h2>
+          <p class="section-desc" data-i18n="svc.desc">From port agency to emergency response — every service designed around uptime, compliance, and the operational tempo of international shipping.</p>
         </div>
         <div class="services-grid" data-services aria-label="Service list">
           <!-- JS will enhance, but HTML hardcodes content -->
@@ -210,9 +246,9 @@
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.2"/><path d="M8 16l6-8 6 8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M4 18h20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             </div>
             <span class="service-num mono" aria-hidden="true">01</span>
-            <h3>Port Agency</h3>
-            <p>Full port agency services with local expertise and international standards.</p>
-            <button class="service-expand" aria-label="Expand Port Agency details" data-expand="port-agency">Learn more <span aria-hidden="true">+</span></button>
+            <h3 data-i18n="svc.1.title">Port Agency</h3>
+            <p data-i18n="svc.1.desc">Full port agency services with local expertise and international standards.</p>
+            <button class="service-expand" aria-label="Expand Port Agency details" data-expand="port-agency"><span data-i18n="svc.1.cta">Learn more</span> <span aria-hidden="true">+</span></button>
           </article>
 
           <article class="service-card" data-service-id="vessel-support">
@@ -220,9 +256,9 @@
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 20 Q8 14 14 16 Q20 18 24 12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M14 4 L12 14 L14 13 L16 14 Z" fill="currentColor"/><path d="M4 22h20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             </div>
             <span class="service-num mono" aria-hidden="true">02</span>
-            <h3>Vessel Support</h3>
-            <p>Comprehensive on-site support for every vessel call across Costa Rica.</p>
-            <button class="service-expand" aria-label="Expand Vessel Support details" data-expand="vessel-support">Learn more <span aria-hidden="true">+</span></button>
+            <h3 data-i18n="svc.2.title">Vessel Support</h3>
+            <p data-i18n="svc.2.desc">Comprehensive on-site support for every vessel call across Costa Rica.</p>
+            <button class="service-expand" aria-label="Expand Vessel Support details" data-expand="vessel-support"><span data-i18n="svc.2.cta">Learn more</span> <span aria-hidden="true">+</span></button>
           </article>
 
           <article class="service-card" data-service-id="crew-logistics">
@@ -230,9 +266,9 @@
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="10" cy="9" r="4" stroke="currentColor" stroke-width="1.2"/><circle cx="19" cy="9" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M3 22c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M22 22c0-2.5-1.5-4.5-3.5-5.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
             </div>
             <span class="service-num mono" aria-hidden="true">03</span>
-            <h3>Crew Logistics</h3>
-            <p>Crew change coordination, visas, hotels, and transfer management.</p>
-            <button class="service-expand" aria-label="Expand Crew Logistics details" data-expand="crew-logistics">Learn more <span aria-hidden="true">+</span></button>
+            <h3 data-i18n="svc.3.title">Crew Logistics</h3>
+            <p data-i18n="svc.3.desc">Crew change coordination, visas, hotels, and transfer management.</p>
+            <button class="service-expand" aria-label="Expand Crew Logistics details" data-expand="crew-logistics"><span data-i18n="svc.3.cta">Learn more</span> <span aria-hidden="true">+</span></button>
           </article>
 
           <article class="service-card" data-service-id="logistics-supply">
@@ -240,9 +276,9 @@
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="8" width="20" height="14" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M9 8V6a5 5 0 0110 0v2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M12 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             </div>
             <span class="service-num mono" aria-hidden="true">04</span>
-            <h3>Logistics &amp; Supply</h3>
-            <p>Ship chandlery, spares procurement, and supply chain management.</p>
-            <button class="service-expand" aria-label="Expand Logistics details" data-expand="logistics-supply">Learn more <span aria-hidden="true">+</span></button>
+            <h3 data-i18n="svc.4.title">Logistics &amp; Supply</h3>
+            <p data-i18n="svc.4.desc">Ship chandlery, spares procurement, and supply chain management.</p>
+            <button class="service-expand" aria-label="Expand Logistics details" data-expand="logistics-supply"><span data-i18n="svc.4.cta">Learn more</span> <span aria-hidden="true">+</span></button>
           </article>
 
           <article class="service-card service-card--accent" data-service-id="emergency-response">
@@ -250,10 +286,10 @@
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4l10 18H4L14 4z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M14 11v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="14" cy="19" r="1" fill="currentColor"/></svg>
             </div>
             <span class="service-num mono" aria-hidden="true">05</span>
-            <h3>Emergency Response</h3>
-            <p>24/7 emergency coordination for incidents at sea and in port.</p>
+            <h3 data-i18n="svc.5.title">Emergency Vessel Support — 24/7</h3>
+            <p data-i18n="svc.5.desc">24/7 emergency coordination for incidents at sea and in port.</p>
             <span class="service-badge mono">24/7</span>
-            <button class="service-expand" aria-label="Expand Emergency Response details" data-expand="emergency-response">Learn more <span aria-hidden="true">+</span></button>
+            <button class="service-expand" aria-label="Expand Emergency Vessel Support details" data-expand="emergency-response"><span data-i18n="svc.5.cta">Learn more</span> <span aria-hidden="true">+</span></button>
           </article>
 
           <article class="service-card" data-service-id="marine-services">
@@ -261,9 +297,9 @@
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 18 Q7 13 10 15 Q13 17 16 13 Q19 9 24 11" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M4 22 Q7 17 10 19 Q13 21 16 17 Q19 13 24 15" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/></svg>
             </div>
             <span class="service-num mono" aria-hidden="true">06</span>
-            <h3>Marine Services</h3>
-            <p>Pilotage assistance, towage, mooring, and technical diving.</p>
-            <button class="service-expand" aria-label="Expand Marine Services details" data-expand="marine-services">Learn more <span aria-hidden="true">+</span></button>
+            <h3 data-i18n="svc.6.title">Marine Services</h3>
+            <p data-i18n="svc.6.desc">Pilotage assistance, towage, mooring, and technical diving.</p>
+            <button class="service-expand" aria-label="Expand Marine Services details" data-expand="marine-services"><span data-i18n="svc.6.cta">Learn more</span> <span aria-hidden="true">+</span></button>
           </article>
 
           <article class="service-card" data-service-id="customs">
@@ -271,9 +307,9 @@
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="6" y="3" width="16" height="22" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M10 9h8M10 13h8M10 17h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             </div>
             <span class="service-num mono" aria-hidden="true">07</span>
-            <h3>Customs Coordination</h3>
-            <p>End-to-end customs clearance and documentation management.</p>
-            <button class="service-expand" aria-label="Expand Customs details" data-expand="customs">Learn more <span aria-hidden="true">+</span></button>
+            <h3 data-i18n="svc.7.title">Customs Coordination</h3>
+            <p data-i18n="svc.7.desc">End-to-end customs clearance and documentation management.</p>
+            <button class="service-expand" aria-label="Expand Customs details" data-expand="customs"><span data-i18n="svc.7.cta">Learn more</span> <span aria-hidden="true">+</span></button>
           </article>
 
           <article class="service-card service-card--glow" data-service-id="operations-desk">
@@ -281,12 +317,12 @@
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="12" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 24c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M20 6l2-2M22 12h2M20 18l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             </div>
             <span class="service-num mono" aria-hidden="true">08</span>
-            <h3>24/7 Operations Desk</h3>
-            <p>Round-the-clock operational support and communication center.</p>
+            <h3 data-i18n="svc.8.title">24/7 Operations Desk</h3>
+            <p data-i18n="svc.8.desc">Round-the-clock operational support and communication center.</p>
             <span class="service-badge mono live-badge">
               <span class="live-dot-small" aria-hidden="true"></span>LIVE
             </span>
-            <button class="service-expand" aria-label="Expand Operations Desk details" data-expand="operations-desk">Learn more <span aria-hidden="true">+</span></button>
+            <button class="service-expand" aria-label="Expand Operations Desk details" data-expand="operations-desk"><span data-i18n="svc.8.cta">Learn more</span> <span aria-hidden="true">+</span></button>
           </article>
         </div>
       </div>
@@ -299,17 +335,23 @@
           <span class="service-modal-num mono" id="modal-num"></span>
           <h3 id="modal-title"></h3>
           <p id="modal-desc"></p>
-          <a href="#contact" class="btn-primary">Request This Service →</a>
+          <ul id="modal-details" class="modal-details-list"></ul>
+          <a href="#contact" class="btn-primary" data-i18n="svc.modal.cta">Request This Service →</a>
         </div>
       </div>
     </section>
 
     <!-- COVERAGE -->
     <section class="coverage section-padding" id="coverage" aria-label="Port Coverage">
+      <div class="coverage-bg" aria-hidden="true"></div>
+      <span class="ship-wrap ship-wrap--rtl" aria-hidden="true" style="bottom:4%; animation-delay:-8s">
+        <img src="assets/img/offshore1.png" class="sailing-ship-img" alt="" />
+        <span class="ship-wake ship-wake--rtl"></span>
+      </span>
       <div class="container">
         <div class="section-header" data-reveal="fade">
-          <p class="section-label">National Coverage</p>
-          <h2 class="section-title">Both coasts.<br />Six ports.</h2>
+          <p class="section-label" data-i18n="cov.label">National Coverage</p>
+          <h2 class="section-title" data-i18n-html="cov.title">Both coasts.<br />Seven ports.</h2>
         </div>
         <div class="coverage-layout">
           <div class="coverage-map" aria-label="Map of Costa Rica showing covered ports">
@@ -345,58 +387,67 @@
                 <!-- Cross-coast hint -->
                 <path class="route-animated" d="M143 154 Q200 145 265 99" stroke="#1B4FBB" stroke-width="0.6" stroke-dasharray="3 6" fill="none" opacity="0.2"/>
 
-                <!-- Moín (Caribbean) cx≈265 cy≈99 -->
+                <!-- Moín (Caribbean) -->
                 <g class="port-group" data-port="moin" style="cursor:pointer">
-                  <circle class="port-ring" cx="265" cy="99" r="15" fill="none" stroke="#0B63FF" stroke-width="1.5"/>
-                  <circle class="port-outer" cx="265" cy="99" r="10" fill="rgba(11,99,255,0.18)" stroke="#0B63FF" stroke-width="0.8" opacity="0"/>
-                  <circle class="port-dot" cx="265" cy="99" r="5.5" fill="#0B63FF" filter="url(#portGlow)" opacity="0"/>
-                  <circle class="port-center" cx="265" cy="99" r="2" fill="#fff" opacity="0"/>
-                  <text class="port-label" x="265" y="82" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">MOÍN</text>
+                  <circle class="port-ring" cx="300" cy="174" r="15" fill="none" stroke="#0B63FF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="300" cy="174" r="10" fill="rgba(11,99,255,0.18)" stroke="#0B63FF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="300" cy="174" r="5.5" fill="#0B63FF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="300" cy="174" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="300" y="157" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">MOÍN</text>
                 </g>
 
-                <!-- Limón (Caribbean) cx≈284 cy≈138 -->
+                <!-- Limón (Caribbean) -->
                 <g class="port-group" data-port="limon" style="cursor:pointer">
-                  <circle class="port-ring" cx="284" cy="138" r="15" fill="none" stroke="#0B63FF" stroke-width="1.5"/>
-                  <circle class="port-outer" cx="284" cy="138" r="10" fill="rgba(11,99,255,0.18)" stroke="#0B63FF" stroke-width="0.8" opacity="0"/>
-                  <circle class="port-dot" cx="284" cy="138" r="5.5" fill="#0B63FF" filter="url(#portGlow)" opacity="0"/>
-                  <circle class="port-center" cx="284" cy="138" r="2" fill="#fff" opacity="0"/>
-                  <text class="port-label" x="284" y="121" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">LIMÓN</text>
+                  <circle class="port-ring" cx="316" cy="199" r="15" fill="none" stroke="#0B63FF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="316" cy="199" r="10" fill="rgba(11,99,255,0.18)" stroke="#0B63FF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="316" cy="199" r="5.5" fill="#0B63FF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="316" cy="199" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="316" y="182" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">LIMÓN</text>
                 </g>
 
-                <!-- Caldera (Pacific) cx≈143 cy≈154 -->
+                <!-- Caldera (Pacific) -->
                 <g class="port-group" data-port="caldera" style="cursor:pointer">
-                  <circle class="port-ring" cx="143" cy="154" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
-                  <circle class="port-outer" cx="143" cy="154" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
-                  <circle class="port-dot" cx="143" cy="154" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
-                  <circle class="port-center" cx="143" cy="154" r="2" fill="#fff" opacity="0"/>
-                  <text class="port-label" x="143" y="137" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">CALDERA</text>
+                  <circle class="port-ring" cx="162" cy="180" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="162" cy="180" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="162" cy="180" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="162" cy="180" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="162" y="163" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">CALDERA</text>
                 </g>
 
-                <!-- Puntarenas (Pacific) cx≈118 cy≈179 -->
+                <!-- Puntarenas (Pacific) -->
                 <g class="port-group" data-port="puntarenas" style="cursor:pointer">
-                  <circle class="port-ring" cx="118" cy="179" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
-                  <circle class="port-outer" cx="118" cy="179" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
-                  <circle class="port-dot" cx="118" cy="179" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
-                  <circle class="port-center" cx="118" cy="179" r="2" fill="#fff" opacity="0"/>
-                  <text class="port-label" x="118" y="162" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">PUNTARENAS</text>
+                  <circle class="port-ring" cx="143" cy="203" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="143" cy="203" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="143" cy="203" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="143" cy="203" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="143" y="186" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">PUNTARENAS</text>
                 </g>
 
-                <!-- Quepos (Pacific) cx≈183 cy≈196 -->
+                <!-- Quepos (Pacific) -->
                 <g class="port-group" data-port="quepos" style="cursor:pointer">
-                  <circle class="port-ring" cx="183" cy="196" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
-                  <circle class="port-outer" cx="183" cy="196" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
-                  <circle class="port-dot" cx="183" cy="196" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
-                  <circle class="port-center" cx="183" cy="196" r="2" fill="#fff" opacity="0"/>
-                  <text class="port-label" x="183" y="179" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">QUEPOS</text>
+                  <circle class="port-ring" cx="204" cy="232" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="204" cy="232" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="204" cy="232" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="204" cy="232" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="204" y="215" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">QUEPOS</text>
                 </g>
 
-                <!-- Golfito (Pacific) cx≈252 cy≈263 -->
+                <!-- Punta Morales (Pacific) -->
+                <g class="port-group" data-port="punta-morales" style="cursor:pointer">
+                  <circle class="port-ring" cx="118" cy="188" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="118" cy="188" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="118" cy="188" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="118" cy="188" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="118" y="171" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">P.MORALES</text>
+                </g>
+
+                <!-- Golfito (Pacific) -->
                 <g class="port-group" data-port="golfito" style="cursor:pointer">
-                  <circle class="port-ring" cx="252" cy="263" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
-                  <circle class="port-outer" cx="252" cy="263" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
-                  <circle class="port-dot" cx="252" cy="263" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
-                  <circle class="port-center" cx="252" cy="263" r="2" fill="#fff" opacity="0"/>
-                  <text class="port-label" x="252" y="246" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">GOLFITO</text>
+                  <circle class="port-ring" cx="288" cy="305" r="15" fill="none" stroke="#2E9BFF" stroke-width="1.5"/>
+                  <circle class="port-outer" cx="288" cy="305" r="10" fill="rgba(46,155,255,0.18)" stroke="#2E9BFF" stroke-width="0.8" opacity="0"/>
+                  <circle class="port-dot" cx="288" cy="305" r="5.5" fill="#2E9BFF" filter="url(#portGlow)" opacity="0"/>
+                  <circle class="port-center" cx="288" cy="305" r="2" fill="#fff" opacity="0"/>
+                  <text class="port-label" x="288" y="288" text-anchor="middle" fill="#fff" font-size="8.5" font-family="monospace" letter-spacing="0.08em" opacity="0">GOLFITO</text>
                 </g>
               </svg>
 
@@ -406,7 +457,7 @@
           <div class="coverage-ports">
             <div class="coverage-coast">
               <h3 class="coverage-coast-title">
-                <span class="mono">—</span> Caribbean Coast
+                <span class="mono">—</span> <span data-i18n="cov.carib">Caribbean Coast</span>
               </h3>
               <div class="coverage-port-list">
                 <button class="port-item" data-target-port="moin">
@@ -430,7 +481,7 @@
 
             <div class="coverage-coast">
               <h3 class="coverage-coast-title">
-                <span class="mono">—</span> Pacific Coast
+                <span class="mono">—</span> <span data-i18n="cov.pac">Pacific Coast</span>
               </h3>
               <div class="coverage-port-list">
                 <button class="port-item" data-target-port="puntarenas">
@@ -457,6 +508,14 @@
                   </div>
                   <span class="port-item-arr" aria-hidden="true">→</span>
                 </button>
+                <button class="port-item" data-target-port="punta-morales">
+                  <span class="port-item-dot port-dot-pac" aria-hidden="true"></span>
+                  <div>
+                    <strong>Punta Morales</strong>
+                    <span class="mono">Bulk &amp; Agricultural</span>
+                  </div>
+                  <span class="port-item-arr" aria-hidden="true">→</span>
+                </button>
                 <button class="port-item" data-target-port="golfito">
                   <span class="port-item-dot port-dot-pac" aria-hidden="true"></span>
                   <div>
@@ -469,51 +528,84 @@
             </div>
           </div>
         </div>
+
+        <!-- Coverage photo carousel -->
+        <div class="photo-carousel" data-carousel aria-label="Coverage photos">
+          <div class="photo-carousel-track">
+            <div class="photo-carousel-slide"><img src="assets/img/pb1.jpg" alt="Port operations" loading="lazy" decoding="async" /></div>
+            <div class="photo-carousel-slide"><img src="assets/img/pb2.jpg" alt="Port operations" loading="lazy" decoding="async" /></div>
+            <div class="photo-carousel-slide"><img src="assets/img/pb3.jpg" alt="Port operations" loading="lazy" decoding="async" /></div>
+          </div>
+          <div class="photo-carousel-dots" aria-hidden="true">
+            <button class="photo-carousel-dot is-active" data-slide="0"></button>
+            <button class="photo-carousel-dot" data-slide="1"></button>
+            <button class="photo-carousel-dot" data-slide="2"></button>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- INDUSTRIES -->
     <section class="industries section-padding" id="industries" aria-label="Industries Served">
-      <div class="industries-bg" aria-hidden="true"></div>
+      <div class="industries-bg" aria-hidden="true">
+        <div class="industries-carousel" aria-hidden="true">
+          <div class="industries-carousel-slide" style="background-image:url('assets/img/coll1.jpg')"></div>
+          <div class="industries-carousel-slide" style="background-image:url('assets/img/coll2.jpg')"></div>
+          <div class="industries-carousel-slide" style="background-image:url('assets/img/coll3.jpg')"></div>
+          <div class="industries-carousel-slide" style="background-image:url('assets/img/coll4.jpg')"></div>
+          <div class="industries-carousel-slide" style="background-image:url('assets/img/coll5.jpg')"></div>
+          <div class="industries-carousel-slide" style="background-image:url('assets/img/coll6.jpg')"></div>
+        </div>
+      </div>
       <div class="container">
         <div class="section-header" data-reveal="fade">
           <p class="section-label">Who We Serve</p>
-          <h2 class="section-title">Every vessel type.<br />Every operator.</h2>
+          <div class="industries-title-carousel" aria-live="polite">
+            <h2 class="section-title ind-title ind-title--active">Every vessel type.<br /><em>Every operator.</em></h2>
+            <h2 class="section-title ind-title">From tankers to cruise.<br /><em>We handle it all.</em></h2>
+            <h2 class="section-title ind-title">Both coasts.<br /><em>One trusted agent.</em></h2>
+          </div>
         </div>
         <div class="industries-grid">
           <article class="industry-card" data-reveal="fade" style="--delay: 0s">
             <img src="assets/img/tanker1.png" alt="Tanker vessel" class="industry-vessel-img" />
             <div class="industry-card-body">
-              <h3>Tanker Operators</h3>
-              <p>Chemical &amp; Oil</p>
+              <span class="industry-type">Chemical &amp; Oil</span>
+              <h3>Tankers</h3>
+              <p class="industry-desc">Port clearance, berth coordination, and cargo documentation for chemical and oil tanker calls at Moín and Caldera.</p>
             </div>
           </article>
-          <article class="industry-card" data-reveal="fade" style="--delay: 0.1s">
+          <article class="industry-card" data-reveal="fade" style="--delay: 0.07s">
             <img src="assets/img/bulk1.png" alt="Bulk carrier vessel" class="industry-vessel-img" />
             <div class="industry-card-body">
+              <span class="industry-type">Dry &amp; Liquid</span>
               <h3>Bulk Carriers</h3>
-              <p>Dry &amp; Liquid</p>
+              <p class="industry-desc">Draft surveys, cargo inspection coordination, and stevedore management for bulk operations across both coasts.</p>
             </div>
           </article>
-          <article class="industry-card" data-reveal="fade" style="--delay: 0.2s">
+          <article class="industry-card" data-reveal="fade" style="--delay: 0.14s">
             <img src="assets/img/container1.png" alt="Container vessel" class="industry-vessel-img" />
             <div class="industry-card-body">
+              <span class="industry-type">Feeder &amp; Ocean</span>
               <h3>Container Lines</h3>
-              <p>Feeder &amp; Ocean</p>
+              <p class="industry-desc">Fast-turnaround agency for feeder and mainline container vessels with full customs and terminal coordination.</p>
             </div>
           </article>
-          <article class="industry-card" data-reveal="fade" style="--delay: 0.3s">
+          <article class="industry-card" data-reveal="fade" style="--delay: 0.21s">
             <img src="assets/img/cruise1.png" alt="Cruise ship" class="industry-vessel-img" />
             <div class="industry-card-body">
-              <h3>Cruise Companies</h3>
-              <p>Ocean &amp; River</p>
+              <span class="industry-type">Ocean &amp; River</span>
+              <h3>Cruise Passengers</h3>
+              <p class="industry-desc">Shore excursion logistics, immigration processing, and VIP passenger support for cruise calls at Limón and Puntarenas.</p>
             </div>
           </article>
-          <article class="industry-card" data-reveal="fade" style="--delay: 0.4s">
+          <article class="industry-card" data-reveal="fade" style="--delay: 0.28s">
             <img src="assets/img/offshore1.png" alt="Offshore vessel" class="industry-vessel-img" />
             <div class="industry-card-body">
-              <h3>Offshore Operators</h3>
-              <p>OSV &amp; Platform</p>
+              <span class="industry-type">OSV &amp; Platform</span>
+              <h3>Offshore Projects</h3>
+              <p class="industry-desc">Supply vessel support, crew transfers, and offshore equipment logistics from Golfito and Pacific anchorage areas.</p>
             </div>
           </article>
         </div>
@@ -524,39 +616,39 @@
     <section class="why section-padding" id="why" aria-label="Why OceanGate">
       <div class="container">
         <div class="section-header" data-reveal="fade">
-          <p class="section-label">The OceanGate Advantage</p>
-          <h2 class="section-title">Why operators<br /><em>choose us.</em></h2>
+          <p class="section-label" data-i18n="why.label">The OceanGate Advantage</p>
+          <h2 class="section-title" data-i18n-html="why.title">Why customers<br /><em>choose us.</em></h2>
         </div>
         <div class="why-grid">
           <div class="why-card" data-reveal="fade" style="--delay:0s">
             <span class="why-stat mono" data-count-up>45<span>min</span></span>
-            <h3>Average Response</h3>
-            <p>Industry-leading first response time across all six ports.</p>
+            <h3 data-i18n="why.1.h">Average Response</h3>
+            <p data-i18n="why.1.p">Industry-leading first response time across all seven ports.</p>
           </div>
           <div class="why-card" data-reveal="fade" style="--delay:0.1s">
             <span class="why-stat mono">24/7</span>
-            <h3>Operations Desk</h3>
-            <p>Continuously staffed control center, every day of the year.</p>
+            <h3 data-i18n="why.2.h">Operations Desk</h3>
+            <p data-i18n="why.2.p">Continuously staffed control center, every day of the year.</p>
           </div>
           <div class="why-card" data-reveal="fade" style="--delay:0.2s">
             <span class="why-stat mono">100%</span>
-            <h3>Local Expertise</h3>
-            <p>Deep knowledge of Costa Rican port procedures, regulations, and relationships.</p>
+            <h3 data-i18n="why.3.h">Local Expertise</h3>
+            <p data-i18n="why.3.p">Deep knowledge of Costa Rican port procedures, regulations, and relationships.</p>
           </div>
           <div class="why-card" data-reveal="fade" style="--delay:0.3s">
-            <span class="why-stat mono" data-count-num="6">6</span>
-            <h3>Ports Covered</h3>
-            <p>Complete Caribbean and Pacific coast network under one agency.</p>
+            <span class="why-stat mono" data-count-num="7">7</span>
+            <h3 data-i18n="why.4.h">Ports Covered</h3>
+            <p data-i18n="why.4.p">Complete Caribbean and Pacific coast network under one agency.</p>
           </div>
           <div class="why-card" data-reveal="fade" style="--delay:0.4s">
             <span class="why-stat mono" data-count-num="98">98<span>%</span></span>
-            <h3>On-Time Record</h3>
-            <p>Consistent delivery performance validated across vessel calls.</p>
+            <h3 data-i18n="why.5.h">On-Time Record</h3>
+            <p data-i18n="why.5.p">Consistent delivery performance validated across vessel calls.</p>
           </div>
           <div class="why-card" data-reveal="fade" style="--delay:0.5s">
             <span class="why-stat mono">CRI</span>
-            <h3>Proudly Costa Rican</h3>
-            <p>Locally incorporated, internationally operated, globally trusted.</p>
+            <h3 data-i18n="why.6.h">Proudly Costa Rican</h3>
+            <p data-i18n="why.6.p">Locally incorporated, internationally operated, globally trusted.</p>
           </div>
         </div>
       </div>
@@ -570,39 +662,39 @@
       </div>
       <div class="container">
         <div class="section-header" data-reveal="fade">
-          <p class="section-label">How We Operate</p>
-          <h2 class="section-title">From first contact<br />to final report.</h2>
+          <p class="section-label" data-i18n="proc.label">How We Operate</p>
+          <h2 class="section-title" data-i18n-html="proc.title">From first contact<br />to final report.</h2>
         </div>
         <div class="process-timeline" role="list" aria-label="Operational process steps">
           <div class="process-step" role="listitem" data-reveal="fade" style="--delay:0s">
             <div class="process-step-num mono" aria-hidden="true">01</div>
             <div class="process-step-line" aria-hidden="true"></div>
-            <h3>Pre-Arrival</h3>
-            <p>We receive vessel ETA and begin coordinating all port authorities, berthing, and services 48 hours in advance.</p>
+            <h3 data-i18n="proc.1.h">Pre-Arrival</h3>
+            <p data-i18n="proc.1.p">We receive vessel ETA and begin coordinating all port authorities, berthing, and services 48 hours in advance.</p>
           </div>
           <div class="process-step" role="listitem" data-reveal="fade" style="--delay:0.1s">
             <div class="process-step-num mono" aria-hidden="true">02</div>
             <div class="process-step-line" aria-hidden="true"></div>
-            <h3>Port Coordination</h3>
-            <p>Our team manages berth booking, customs pre-clearance, and all pre-port logistics.</p>
+            <h3 data-i18n="proc.2.h">Port Coordination</h3>
+            <p data-i18n="proc.2.p">Our team manages berth booking, customs pre-clearance, and all pre-port logistics.</p>
           </div>
           <div class="process-step" role="listitem" data-reveal="fade" style="--delay:0.2s">
             <div class="process-step-num mono" aria-hidden="true">03</div>
             <div class="process-step-line" aria-hidden="true"></div>
-            <h3>Operations</h3>
-            <p>On-site coordinators execute all services: cargo ops, provisioning, crew logistics, and technical support.</p>
+            <h3 data-i18n="proc.3.h">Operations</h3>
+            <p data-i18n="proc.3.p">On-site coordinators execute all services: cargo ops, provisioning, crew logistics, and technical support.</p>
           </div>
           <div class="process-step" role="listitem" data-reveal="fade" style="--delay:0.3s">
             <div class="process-step-num mono" aria-hidden="true">04</div>
             <div class="process-step-line" aria-hidden="true"></div>
-            <h3>Departure</h3>
-            <p>Full clearance documentation, exit coordination with port and immigration authorities.</p>
+            <h3 data-i18n="proc.4.h">Departure</h3>
+            <p data-i18n="proc.4.p">Full clearance documentation, exit coordination with port and immigration authorities.</p>
           </div>
           <div class="process-step" role="listitem" data-reveal="fade" style="--delay:0.4s">
             <div class="process-step-num mono" aria-hidden="true">05</div>
             <div class="process-step-line" aria-hidden="true"></div>
-            <h3>Post-Call Report</h3>
-            <p>Detailed disbursement account and operational report delivered within 24 hours of departure.</p>
+            <h3 data-i18n="proc.5.h">Post-Call Report</h3>
+            <p data-i18n="proc.5.p">Detailed disbursement account and operational report delivered within 24 hours of departure.</p>
           </div>
         </div>
       </div>
@@ -614,35 +706,35 @@
       <div class="container">
         <div class="ops-layout">
           <div class="ops-text" data-reveal="fade">
-            <p class="section-label">Always On</p>
-            <h2 class="section-title">24/7 Operations<br /><em>Desk.</em></h2>
-            <p class="ops-desc">Our operations center never closes. Every call answered. Every vessel supported. Every emergency coordinated — day or night, weekday or holiday.</p>
+            <p class="section-label" data-i18n="ops.label">Always On</p>
+            <h2 class="section-title" data-i18n-html="ops.title">24/7 Operations<br /><em>Desk.</em></h2>
+            <p class="ops-desc" data-i18n="ops.desc">Our operations center never closes. Every call answered. Every vessel supported. Every emergency coordinated — day or night, weekday or holiday.</p>
             <div class="ops-channels">
               <a href="tel:+50622220000" class="ops-channel">
                 <div class="ops-channel-icon" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 3h4l2 5-3 1.5a10 10 0 005.5 5.5L14 12l5 2v4a2 2 0 01-2 2A17 17 0 013 3a2 2 0 012-2z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg>
                 </div>
                 <div>
-                  <span class="mono">Phone</span>
+                  <span class="mono" data-i18n="ops.phone">Phone</span>
                   <strong>+506 2222-0000</strong>
                 </div>
               </a>
-              <a href="mailto:ops@oceangatecr.com" class="ops-channel">
+              <a href="mailto:info@oceangate.com" class="ops-channel">
                 <div class="ops-channel-icon" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
                 </div>
                 <div>
-                  <span class="mono">Email</span>
-                  <strong>ops@oceangatecr.com</strong>
+                  <span class="mono" data-i18n="ops.email">Email</span>
+                  <strong>info@oceangate.com</strong>
                 </div>
               </a>
-              <a href="https://wa.me/50688880000" class="ops-channel" rel="noopener noreferrer" target="_blank">
+              <a href="https://wa.me/50683132421" class="ops-channel" rel="noopener noreferrer" target="_blank">
                 <div class="ops-channel-icon ops-channel-icon--whatsapp" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 10.5c0 2.2 1.8 4 4 4 .7 0 1.4-.2 2-.5l2.5.5-.5-2.5c.3-.6.5-1.3.5-2 0-2.2-1.8-4-4-4s-4 1.8-4 4z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
                 </div>
                 <div>
-                  <span class="mono">WhatsApp</span>
-                  <strong>+506 8888-0000</strong>
+                  <span class="mono" data-i18n="ops.whatsapp">WhatsApp</span>
+                  <strong>+506 8313-2421</strong>
                 </div>
               </a>
             </div>
@@ -658,23 +750,23 @@
               </div>
               <div class="ops-status-body">
                 <div class="ops-status-row">
-                  <span>Operations Desk</span>
-                  <span class="ops-status-ok mono">Online</span>
+                  <span data-i18n="ops.row1">Operations Desk</span>
+                  <span class="ops-status-ok mono" data-i18n="ops.ok">Online</span>
                 </div>
                 <div class="ops-status-row">
-                  <span>Caribbean Ports</span>
-                  <span class="ops-status-ok mono">Active</span>
+                  <span data-i18n="ops.row2">Caribbean Ports</span>
+                  <span class="ops-status-ok mono" data-i18n="ops.active">Active</span>
                 </div>
                 <div class="ops-status-row">
-                  <span>Pacific Ports</span>
-                  <span class="ops-status-ok mono">Active</span>
+                  <span data-i18n="ops.row3">Pacific Ports</span>
+                  <span class="ops-status-ok mono" data-i18n="ops.active">Active</span>
                 </div>
                 <div class="ops-status-row">
-                  <span>Emergency Line</span>
-                  <span class="ops-status-ok mono">Staffed</span>
+                  <span data-i18n="ops.row4">Emergency Line</span>
+                  <span class="ops-status-ok mono" data-i18n="ops.staffed">Staffed</span>
                 </div>
               </div>
-              <div class="ops-status-footer mono">
+              <div class="ops-status-footer mono" data-i18n="ops.status">
                 All systems operational
               </div>
             </div>
@@ -683,12 +775,87 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="testimonials section-padding" id="testimonials" aria-label="Client testimonials">
+    <!-- PORT CALL PROCESS -->
+    <section class="portcall section-padding" id="port-call-process" aria-label="Port Call Process" data-spotlight>
+      <div class="section-spotlight" aria-hidden="true"></div>
+      <span class="ship-wrap ship-wrap--ltr" aria-hidden="true" style="bottom:10%">
+        <img src="assets/img/cruise1.png" class="sailing-ship-img" alt="" />
+        <span class="ship-wake ship-wake--ltr"></span>
+      </span>
       <div class="container">
         <div class="section-header" data-reveal="fade">
-          <p class="section-label">What Operators Say</p>
-          <h2 class="section-title">Trusted by those<br /><em>who know the sea.</em></h2>
+          <p class="section-label" data-i18n="pc.label">How It Works</p>
+          <h2 class="section-title" data-i18n-html="pc.title">Port call process.<br /><em>Start to finish.</em></h2>
+        </div>
+
+        <!-- Port call photo carousel -->
+        <div class="photo-carousel" data-carousel aria-label="Port call process photos">
+          <div class="photo-carousel-track">
+            <div class="photo-carousel-slide"><img src="assets/img/prueba-1.jpg" alt="Port call operations" loading="lazy" decoding="async" /></div>
+            <div class="photo-carousel-slide"><img src="assets/img/pb5.jpg" alt="Port call operations" loading="lazy" decoding="async" /></div>
+            <div class="photo-carousel-slide"><img src="assets/img/containers.jpg" alt="Port call operations" loading="lazy" decoding="async" /></div>
+          </div>
+          <div class="photo-carousel-dots" aria-hidden="true">
+            <button class="photo-carousel-dot is-active" data-slide="0"></button>
+            <button class="photo-carousel-dot" data-slide="1"></button>
+            <button class="photo-carousel-dot" data-slide="2"></button>
+          </div>
+        </div>
+
+        <div class="portcall-grid">
+          <div class="portcall-step" data-reveal="fade" style="--delay:0s">
+            <span class="portcall-num mono">01</span>
+            <div class="portcall-body">
+              <h3 data-i18n="pc.1.h">Pre-Arrival Coordination</h3>
+              <p data-i18n="pc.1.p">ETA notification received 48–72 hours out. We begin berthing allocation, authority notifications, and full service scheduling before the vessel reaches port limits.</p>
+            </div>
+          </div>
+          <div class="portcall-step" data-reveal="fade" style="--delay:0.07s">
+            <span class="portcall-num mono">02</span>
+            <div class="portcall-body">
+              <h3 data-i18n="pc.2.h">Port Authority Communication</h3>
+              <p data-i18n="pc.2.p">Direct liaison with port captaincy, customs, immigration, and health authorities. All pre-arrival declarations submitted and clearances coordinated in advance.</p>
+            </div>
+          </div>
+          <div class="portcall-step" data-reveal="fade" style="--delay:0.14s">
+            <span class="portcall-num mono">03</span>
+            <div class="portcall-body">
+              <h3 data-i18n="pc.3.h">On-Site Vessel Attendance</h3>
+              <p data-i18n="pc.3.p">A dedicated agent boards upon arrival, present throughout the call. Single point of contact for captain, officers, and all shore-side parties.</p>
+            </div>
+          </div>
+          <div class="portcall-step" data-reveal="fade" style="--delay:0.21s">
+            <span class="portcall-num mono">04</span>
+            <div class="portcall-body">
+              <h3 data-i18n="pc.4.h">Cargo / Crew / Logistics Support</h3>
+              <p data-i18n="pc.4.p">Simultaneous management of cargo operations, crew changes, provisioning, spare parts delivery, and any technical or medical requirements during the port stay.</p>
+            </div>
+          </div>
+          <div class="portcall-step" data-reveal="fade" style="--delay:0.28s">
+            <span class="portcall-num mono">05</span>
+            <div class="portcall-body">
+              <h3 data-i18n="pc.5.h">Departure Clearance</h3>
+              <p data-i18n="pc.5.p">All outbound documentation prepared: port clearance, customs exit, immigration stamps, and final manifest. Vessel departs without delays at the gate.</p>
+            </div>
+          </div>
+          <div class="portcall-step" data-reveal="fade" style="--delay:0.35s">
+            <span class="portcall-num mono">06</span>
+            <div class="portcall-body">
+              <h3 data-i18n="pc.6.h">Final Reporting</h3>
+              <p data-i18n="pc.6.p">Full disbursement account, call report, and port cost summary delivered within 24 hours of departure. All documentation archived and available on request.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials section-padding" id="testimonials" aria-label="Client testimonials" data-spotlight>
+      <div class="section-spotlight" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-header" data-reveal="fade">
+          <p class="section-label" data-i18n="test.label">What Operators Say</p>
+          <h2 class="section-title" data-i18n-html="test.title">Trusted by those<br /><em>who know the sea.</em></h2>
         </div>
         <div class="testimonials-grid">
           <blockquote class="testimonial-card" data-reveal="fade" style="--delay:0s">
@@ -720,47 +887,48 @@
     <section class="contact section-padding" id="contact" aria-label="Contact OceanGate">
       <div class="container">
         <div class="section-header" data-reveal="fade">
-          <p class="section-label">Get In Touch</p>
-          <h2 class="section-title">Start your<br /><em>port call today.</em></h2>
+          <p class="section-label" data-i18n="con.label">Get In Touch</p>
+          <h2 class="section-title" data-i18n-html="con.title">Start your<br /><em>port call today.</em></h2>
         </div>
         <div class="contact-layout">
           <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
             <div class="form-row">
               <div class="form-group">
-                <label for="f-name">Full Name *</label>
-                <input type="text" id="f-name" name="name" required autocomplete="name" placeholder="Capt. John Smith" />
+                <label for="f-name" data-i18n="con.f.name">Full Name *</label>
+                <input type="text" id="f-name" name="name" required autocomplete="name" placeholder="Capt. John Smith" data-i18n-placeholder="con.ph.name" />
               </div>
               <div class="form-group">
-                <label for="f-company">Company</label>
-                <input type="text" id="f-company" name="company" autocomplete="organization" placeholder="Shipping Co. Ltd." />
+                <label for="f-company" data-i18n="con.f.company">Company</label>
+                <input type="text" id="f-company" name="company" autocomplete="organization" placeholder="Shipping Co. Ltd." data-i18n-placeholder="con.ph.company" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="f-email">Email *</label>
-                <input type="email" id="f-email" name="email" required autocomplete="email" placeholder="ops@yourcompany.com" />
+                <label for="f-email" data-i18n="con.f.email">Email *</label>
+                <input type="email" id="f-email" name="email" required autocomplete="email" placeholder="ops@yourcompany.com" data-i18n-placeholder="con.ph.email" />
               </div>
               <div class="form-group">
-                <label for="f-vessel">Vessel Name</label>
-                <input type="text" id="f-vessel" name="vessel" placeholder="MV Example" />
+                <label for="f-vessel" data-i18n="con.f.vessel">Vessel Name</label>
+                <input type="text" id="f-vessel" name="vessel" placeholder="MV Example" data-i18n-placeholder="con.ph.vessel" />
               </div>
             </div>
             <div class="form-group">
-              <label for="f-port">Port of Interest</label>
+              <label for="f-port" data-i18n="con.f.port">Port of Interest</label>
               <select id="f-port" name="port">
-                <option value="">Select a port…</option>
+                <option value="" data-i18n="con.ph.port">Select a port…</option>
                 <option value="moin">Moín (Caribbean)</option>
                 <option value="limon">Limón (Caribbean)</option>
                 <option value="puntarenas">Puntarenas (Pacific)</option>
                 <option value="caldera">Caldera (Pacific)</option>
                 <option value="quepos">Quepos (Pacific)</option>
+                <option value="punta-morales">Punta Morales (Pacific)</option>
                 <option value="golfito">Golfito (Pacific)</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="f-service">Service Required</label>
+              <label for="f-service" data-i18n="con.f.service">Service Required</label>
               <select id="f-service" name="service">
-                <option value="">Select a service…</option>
+                <option value="" data-i18n="con.ph.service">Select a service…</option>
                 <option>Port Agency</option>
                 <option>Vessel Support</option>
                 <option>Crew Logistics</option>
@@ -772,12 +940,12 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="f-message">Message *</label>
-              <textarea id="f-message" name="message" required rows="5" placeholder="Vessel ETA, port requirements, or any operational question…"></textarea>
+              <label for="f-message" data-i18n="con.f.msg">Message *</label>
+              <textarea id="f-message" name="message" required rows="5" placeholder="Vessel ETA, port requirements, or any operational question…" data-i18n-placeholder="con.ph.msg"></textarea>
             </div>
             <button type="submit" class="btn-primary form-submit" id="form-submit">
-              <span class="form-submit-text">Send Request</span>
-              <span class="form-submit-sending" aria-hidden="true">Sending…</span>
+              <span class="form-submit-text" data-i18n="con.submit">Send Request</span>
+              <span class="form-submit-sending" aria-hidden="true" data-i18n="con.sending">Sending…</span>
               <span class="form-submit-done" aria-hidden="true">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l5 5 7-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 Sent!
@@ -789,36 +957,57 @@
             <div class="contact-emergency">
               <span class="live-dot" aria-hidden="true"></span>
               <div>
-                <p class="mono">Emergency Line — 24/7</p>
+                <p class="mono" data-i18n="con.emergency">Emergency Line — 24/7</p>
                 <a href="tel:+50688880000" class="contact-emergency-num">+506 8888-0000</a>
               </div>
             </div>
             <div class="contact-details">
               <div class="contact-detail">
-                <span class="mono contact-detail-label">Operations</span>
+                <span class="mono contact-detail-label" data-i18n="con.ops">Operations</span>
                 <a href="tel:+50622220000">+506 2222-0000</a>
               </div>
               <div class="contact-detail">
-                <span class="mono contact-detail-label">Email</span>
-                <a href="mailto:ops@oceangatecr.com">ops@oceangatecr.com</a>
+                <span class="mono contact-detail-label" data-i18n="con.email.lbl">Email</span>
+                <a href="mailto:info@oceangate.com">info@oceangate.com</a>
               </div>
               <div class="contact-detail">
-                <span class="mono contact-detail-label">WhatsApp</span>
-                <a href="https://wa.me/50688880000" rel="noopener noreferrer" target="_blank">+506 8888-0000</a>
+                <span class="mono contact-detail-label" data-i18n="con.wa.lbl">WhatsApp</span>
+                <a href="https://wa.me/50683132421" rel="noopener noreferrer" target="_blank">+506 8313-2421</a>
               </div>
-              <div class="contact-detail">
-                <span class="mono contact-detail-label">Location</span>
-                <span>San José, Costa Rica</span>
+              <div class="contact-detail contact-detail--location" id="location-detail">
+                <span class="mono contact-detail-label" data-i18n="con.loc">Location</span>
+                <span class="location-trigger" tabindex="0" aria-describedby="location-map-card">
+                  Limón Centro, Frente al Park Hotel<br />Oficentro Club Miramar
+                </span>
+                <div class="location-map-card" id="location-map-card" role="tooltip" aria-hidden="true">
+                  <div class="location-map-card-header mono">Oficentro Club Miramar</div>
+                  <iframe
+                    title="OceanGate office location"
+                    src="https://maps.google.com/maps?q=9.993642,-83.026737&z=16&output=embed"
+                    width="280" height="180"
+                    style="border:0;display:block;"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen
+                  ></iframe>
+                  <a
+                    href="https://www.google.com/maps?q=9.993642,-83.026737"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="location-map-card-link mono"
+                  >Open in Google Maps →</a>
+                </div>
               </div>
             </div>
             <div class="contact-ports-summary">
-              <p class="mono">Active Ports</p>
+              <p class="mono" data-i18n="con.ports">Active Ports</p>
               <div class="contact-ports-tags">
                 <span class="port-tag">Moín</span>
                 <span class="port-tag">Limón</span>
                 <span class="port-tag">Puntarenas</span>
                 <span class="port-tag">Caldera</span>
                 <span class="port-tag">Quepos</span>
+                <span class="port-tag">Punta Morales</span>
                 <span class="port-tag">Golfito</span>
               </div>
             </div>
@@ -827,7 +1016,38 @@
       </div>
     </section>
 
+    <!-- VESSEL MARQUEE -->
+    <div class="vessel-marquee" aria-hidden="true">
+      <div class="vessel-marquee-track">
+        <img src="assets/img/tanker1.png"    alt="" class="vessel-marquee-img" />
+        <img src="assets/img/bulk1.png"      alt="" class="vessel-marquee-img" />
+        <img src="assets/img/container1.png" alt="" class="vessel-marquee-img" />
+        <img src="assets/img/cruise1.png"    alt="" class="vessel-marquee-img" />
+        <img src="assets/img/offshore1.png"  alt="" class="vessel-marquee-img" />
+        <img src="assets/img/tanker1.png"    alt="" class="vessel-marquee-img" />
+        <img src="assets/img/bulk1.png"      alt="" class="vessel-marquee-img" />
+        <img src="assets/img/container1.png" alt="" class="vessel-marquee-img" />
+        <img src="assets/img/cruise1.png"    alt="" class="vessel-marquee-img" />
+        <img src="assets/img/offshore1.png"  alt="" class="vessel-marquee-img" />
+        <img src="assets/img/tanker1.png"    alt="" class="vessel-marquee-img" />
+        <img src="assets/img/bulk1.png"      alt="" class="vessel-marquee-img" />
+        <img src="assets/img/container1.png" alt="" class="vessel-marquee-img" />
+        <img src="assets/img/cruise1.png"    alt="" class="vessel-marquee-img" />
+        <img src="assets/img/offshore1.png"  alt="" class="vessel-marquee-img" />
+      </div>
+    </div>
+
   </main>
+
+  <!-- WhatsApp floating bubble -->
+  <a href="https://wa.me/50683132421" target="_blank" rel="noopener noreferrer"
+     class="wa-bubble" id="wa-bubble" aria-label="Contact us on WhatsApp">
+    <svg class="wa-bubble-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="16" fill="#25D366"/>
+      <path d="M22.5 9.5A8.96 8.96 0 0016 7C11.03 7 7 11.03 7 16c0 1.59.42 3.13 1.2 4.5L7 25l4.63-1.21A8.97 8.97 0 0016 25c4.97 0 9-4.03 9-9a8.96 8.96 0 00-2.5-6.5zm-6.5 13.84c-1.35 0-2.67-.36-3.82-1.04l-.27-.16-2.75.72.73-2.68-.18-.28A7.44 7.44 0 018.56 16C8.56 11.9 11.9 8.56 16 8.56c2 0 3.87.78 5.28 2.18A7.41 7.41 0 0123.44 16c0 4.1-3.34 7.34-7.44 7.34zm4.08-5.5c-.22-.11-1.32-.65-1.52-.72-.2-.08-.35-.11-.5.11-.15.22-.58.72-.71.87-.13.15-.26.17-.48.06-.22-.11-.94-.35-1.79-1.1-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.08-.15.04-.28-.02-.39-.06-.11-.5-1.2-.68-1.64-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.6.28-.2.22-.78.76-.78 1.86s.8 2.16.91 2.31c.11.15 1.58 2.41 3.83 3.38.54.23.95.37 1.28.47.54.17 1.03.15 1.41.09.43-.07 1.32-.54 1.5-1.06.19-.52.19-.97.13-1.06-.06-.09-.2-.15-.43-.26z" fill="white"/>
+    </svg>
+    <span class="wa-bubble-text" data-i18n="wa.text">Need Support? Get In Contact Now.</span>
+  </a>
 
   <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
@@ -838,48 +1058,51 @@
             <img src="assets/img/oceangatelogo1.png" alt="OceanGate" width="96" height="96" style="width:96px;height:96px;object-fit:contain;" />
             <span>OceanGate</span>
           </a>
-          <p>Shipping Services Hand to Hand with Sea.</p>
-          <p class="mono footer-loc">San José, Costa Rica</p>
+          <p data-i18n="foot.tagline">Costa Rica's port agency trusted by ship owners, charterers and operators across Caribbean and Pacific.</p>
+          <p class="mono footer-loc">Limón, Costa Rica</p>
         </div>
         <nav class="footer-nav" aria-label="Footer navigation">
           <div class="footer-nav-col">
-            <strong>Services</strong>
+            <strong data-i18n="foot.services">Services</strong>
             <a href="#services">Port Agency</a>
             <a href="#services">Vessel Support</a>
             <a href="#services">Crew Logistics</a>
             <a href="#services">Emergency Response</a>
           </div>
           <div class="footer-nav-col">
-            <strong>Ports</strong>
+            <strong data-i18n="foot.ports">Ports</strong>
             <a href="#coverage">Moín</a>
             <a href="#coverage">Limón</a>
             <a href="#coverage">Caldera</a>
             <a href="#coverage">Puntarenas</a>
-            <a href="#coverage">Quepos · Golfito</a>
+            <a href="#coverage">Quepos</a>
+            <a href="#coverage">Punta Morales</a>
+            <a href="#coverage">Golfito</a>
           </div>
           <div class="footer-nav-col">
-            <strong>Contact</strong>
+            <strong data-i18n="foot.contact">Contact</strong>
             <a href="tel:+50622220000">+506 2222-0000</a>
-            <a href="mailto:ops@oceangatecr.com">ops@oceangatecr.com</a>
-            <a href="https://wa.me/50688880000" rel="noopener noreferrer" target="_blank">WhatsApp</a>
+            <a href="mailto:info@oceangate.com">info@oceangate.com</a>
+            <a href="https://wa.me/50683132421" rel="noopener noreferrer" target="_blank">WhatsApp</a>
           </div>
         </nav>
       </div>
       <div class="footer-bottom">
-        <p class="mono">&copy; 2026 OceanGate Costa Rica. All rights reserved.</p>
+        <p class="mono" data-i18n="foot.copy">&copy; 2026 OceanGate Costa Rica. All rights reserved.</p>
         <div class="footer-bottom-links">
-          <a href="#" class="mono">Privacy Policy</a>
+          <a href="#" class="mono" data-i18n="foot.privacy">Privacy Policy</a>
           <span aria-hidden="true">·</span>
-          <a href="#" class="mono">Terms</a>
+          <a href="#" class="mono" data-i18n="foot.terms">Terms</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts — manifest.js is the single source of truth for window.__OCEANGATE__ -->
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
+  <script defer src="lib/translations.js"></script>
   <script defer src="main.js?v=20260625"></script>
 
 </body>

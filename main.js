@@ -185,9 +185,10 @@
     var modal    = $("#service-modal");
     var backdrop = $(".service-modal-backdrop");
     var closeBtn = $(".service-modal-close");
-    var numEl    = $("#modal-num");
-    var titleEl  = $("#modal-title");
-    var descEl   = $("#modal-desc");
+    var numEl      = $("#modal-num");
+    var titleEl    = $("#modal-title");
+    var descEl     = $("#modal-desc");
+    var detailsEl  = $("#modal-details");
 
     if (!modal) return;
 
@@ -197,10 +198,22 @@
       var svc = data.find(function(s){ return s.id === id; });
       if (!svc) return;
       var card = $('[data-service-id="' + id + '"]');
-      var num  = card ? (card.querySelector(".service-num") || {}).textContent : "";
-      numEl.textContent  = num;
-      titleEl.textContent = svc.title;
-      descEl.textContent  = svc.desc;
+      var num  = card ? ($(".service-num", card) || {}).textContent : "";
+      // Read translated content from the card DOM (already updated by applyLang)
+      var h3  = card && $("h3", card);
+      var p   = card && $("p",  card);
+      numEl.textContent   = num;
+      titleEl.textContent = h3 ? h3.textContent : svc.title;
+      descEl.textContent  = p  ? p.textContent  : svc.desc;
+      if (detailsEl) {
+        detailsEl.innerHTML = "";
+        (svc.details || []).forEach(function(item) {
+          var li = document.createElement("li");
+          li.textContent = item;
+          detailsEl.appendChild(li);
+        });
+        detailsEl.style.display = (svc.details && svc.details.length) ? "" : "none";
+      }
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       closeBtn.focus();
@@ -228,6 +241,28 @@
   }
 
   /* ── Coverage map port interaction ───────────────────── */
+  function initIndustriesCarousel() {
+    var slides = $$(".industries-carousel-slide");
+    if (!slides.length) return;
+    var current = 0;
+    slides[0].classList.add("is-active");
+    setInterval(function() {
+      slides[current].classList.remove("is-active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("is-active");
+    }, 3500);
+
+    /* Rotate section titles every 2 image changes (3500 × 2 = 7000ms) */
+    var titles = $$(".ind-title");
+    if (!titles.length) return;
+    var ti = 0;
+    setInterval(function() {
+      titles[ti].classList.remove("ind-title--active");
+      ti = (ti + 1) % titles.length;
+      titles[ti].classList.add("ind-title--active");
+    }, 7000);
+  }
+
   function initCoverage() {
     var portGroups = $$(".port-group");
     var portBtns   = $$(".port-item");
@@ -245,6 +280,7 @@
       puntarenas: { name: "Puntarenas", coast: "Pacific",   desc: "Multi-purpose Pacific hub with ferry & bulk cargo services.",  img: "assets/img/puntarenas-demo.png" },
       caldera:    { name: "Caldera",    coast: "Pacific",   desc: "Primary Pacific container port — 40 km from San José.",       img: "assets/img/caldera-demo.png"    },
       quepos:     { name: "Quepos",     coast: "Pacific",   desc: "Marina & fishing port — gateway to Manuel Antonio.",          img: "assets/img/quepos-demo.png"     },
+      "punta-morales": { name: "Punta Morales", coast: "Pacific", desc: "Bulk & agricultural terminal on the Nicoya Gulf — grain, fertiliser, and agro-export operations.", img: "assets/img/punta-morales1.png" },
       golfito:    { name: "Golfito",    coast: "Pacific",   desc: "Southern Gulf port for bulk & offshore vessel support.",      img: "assets/img/golfito-demo.png"    }
     };
 
@@ -379,6 +415,26 @@
   }
 
   /* ── Contact form ─────────────────────────────────────── */
+  function initWaBubble() {
+    var bubble  = $("#wa-bubble");
+    var trigger = $("#services");   /* appear after 3rd section */
+    var hide    = $("#contact");    /* disappear at last section */
+    if (!bubble || !trigger || !hide) return;
+
+    function check() {
+      var scrollY    = window.scrollY || window.pageYOffset;
+      var showAfter  = trigger.offsetTop - window.innerHeight * 0.5;
+      var hideAfter  = hide.offsetTop - window.innerHeight * 0.5;
+      if (scrollY >= showAfter && scrollY < hideAfter) {
+        bubble.classList.add("is-visible");
+      } else {
+        bubble.classList.remove("is-visible");
+      }
+    }
+    window.addEventListener("scroll", check, { passive: true });
+    check();
+  }
+
   function initContactForm() {
     var form   = $("#contact-form");
     var submit = $("#form-submit");
@@ -458,22 +514,6 @@
       io2.observe(el);
     });
 
-    // Why cards stagger
-    var whyCards = $$(".why-card");
-    if (whyCards.length) {
-      gsap.from(whyCards, {
-        opacity: 0,
-        y: 30,
-        stagger: 0.08,
-        duration: 0.7,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".why-grid",
-          start: "top 85%"
-        }
-      });
-    }
-
     // Industry cards stagger
     var indCards = $$(".industry-card");
     if (indCards.length) {
@@ -494,6 +534,56 @@
   }
 
   /* ── Favicon SVG inline ───────────────────────────────── */
+  function initSectionSpotlights() {
+    if (!fineHover) return;
+    $$("[data-spotlight]").forEach(function(section) {
+      var sx = 50, sy = 40, tx = 50, ty = 40, raf;
+      section.addEventListener("mousemove", function(e) {
+        var rect = section.getBoundingClientRect();
+        tx = ((e.clientX - rect.left) / rect.width  * 100);
+        ty = ((e.clientY - rect.top)  / rect.height * 100);
+      });
+      section.addEventListener("mouseenter", function() {
+        function loop() {
+          sx += (tx - sx) * 0.06;
+          sy += (ty - sy) * 0.06;
+          section.style.setProperty("--sx", sx.toFixed(2) + "%");
+          section.style.setProperty("--sy", sy.toFixed(2) + "%");
+          raf = requestAnimationFrame(loop);
+        }
+        loop();
+      });
+      section.addEventListener("mouseleave", function() {
+        cancelAnimationFrame(raf);
+      });
+    });
+  }
+
+  function initPhotoCarousels() {
+    $$("[data-carousel]").forEach(function (carousel) {
+      var track = carousel.querySelector(".photo-carousel-track");
+      var dots  = Array.from(carousel.querySelectorAll(".photo-carousel-dot"));
+      var count = dots.length;
+      var current = 0;
+
+      function goTo(i) {
+        current = i;
+        track.style.transform = "translateX(-" + (i * 100) + "%)";
+        dots.forEach(function (d, idx) {
+          d.classList.toggle("is-active", idx === i);
+        });
+      }
+
+      dots.forEach(function (dot) {
+        dot.addEventListener("click", function () {
+          goTo(parseInt(dot.dataset.slide, 10));
+        });
+      });
+
+      setInterval(function () { goTo((current + 1) % count); }, 4500);
+    });
+  }
+
   function initFavicon() {
     var existing = $('link[rel="icon"]');
     if (existing) return; // already set from HTML
@@ -512,6 +602,55 @@
     document.head.appendChild(link);
   }
 
+  /* ── Language toggle ──────────────────────────────────── */
+  function initLang() {
+    var toggle = $("#lang-toggle");
+    if (!toggle || !window.TRANSLATIONS) return;
+
+    var current = $(".lang-toggle-current", toggle);
+    var other   = $(".lang-toggle-other",   toggle);
+
+    function applyLang(lang) {
+      var t = window.TRANSLATIONS[lang];
+      if (!t) return;
+
+      document.documentElement.lang = lang;
+
+      if (lang === "en") {
+        current.textContent = "EN";
+        other.textContent   = "ES";
+      } else {
+        current.textContent = "ES";
+        other.textContent   = "EN";
+      }
+
+      $$("[data-i18n]").forEach(function(el) {
+        var v = t[el.getAttribute("data-i18n")];
+        if (v !== undefined) el.textContent = v;
+      });
+
+      $$("[data-i18n-html]").forEach(function(el) {
+        var v = t[el.getAttribute("data-i18n-html")];
+        if (v !== undefined) el.innerHTML = v;
+      });
+
+      $$("[data-i18n-placeholder]").forEach(function(el) {
+        var v = t[el.getAttribute("data-i18n-placeholder")];
+        if (v !== undefined) el.setAttribute("placeholder", v);
+      });
+
+      try { localStorage.setItem("og-lang", lang); } catch(e) {}
+    }
+
+    var stored = "en";
+    try { stored = localStorage.getItem("og-lang") || "en"; } catch(e) {}
+    if (stored !== "en") applyLang(stored);
+
+    toggle.addEventListener("click", function() {
+      applyLang(document.documentElement.lang === "en" ? "es" : "en");
+    });
+  }
+
   /* ── Boot ─────────────────────────────────────────────── */
   function boot() {
     safe(initFavicon,      "initFavicon");
@@ -522,10 +661,15 @@
     safe(initReveals,      "initReveals");
     safe(initCountUp,      "initCountUp");
     safe(initServiceModal, "initServiceModal");
+    safe(initIndustriesCarousel, "initIndustriesCarousel");
     safe(initCoverage,     "initCoverage");
     safe(initOpsClock,     "initOpsClock");
     safe(initTilt,         "initTilt");
     safe(initContactForm,  "initContactForm");
+    safe(initWaBubble,     "initWaBubble");
+    safe(initSectionSpotlights, "initSectionSpotlights");
+    safe(initPhotoCarousels,    "initPhotoCarousels");
+    safe(initLang,              "initLang");
 
     if (window.gsap && window.ScrollTrigger) {
       safe(initGSAP, "initGSAP");
