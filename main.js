@@ -435,28 +435,50 @@
     check();
   }
 
-  function initContactForm() {
-    var form   = $("#contact-form");
-    var submit = $("#form-submit");
-    if (!form || !submit) return;
+  /* ── WhatsApp message composer ────────────────────────
+     No backend: the port/service selects only build a
+     pre-filled wa.me link so the visitor just hits send. */
+  function initWaComposer() {
+    var cta     = $("#wa-cta");
+    var preview = $("#wa-preview-text");
+    var port    = $("#f-port");
+    var service = $("#f-service");
+    if (!cta) return;
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-      submit.classList.add("is-sending");
-      submit.disabled = true;
+    var NUMBER = "50683132421";
 
-      // Simulate async send (replace with real fetch in production)
-      setTimeout(function() {
-        submit.classList.remove("is-sending");
-        submit.classList.add("is-done");
-        setTimeout(function() {
-          submit.classList.remove("is-done");
-          submit.disabled = false;
-          form.reset();
-        }, 3000);
-      }, 1800);
+    function label(sel) {
+      if (!sel || !sel.value) return "";
+      var opt = sel.options[sel.selectedIndex];
+      return opt ? opt.textContent.trim() : sel.value;
+    }
+
+    function build() {
+      var lang = document.documentElement.lang === "es" ? "es" : "en";
+      var t    = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || {};
+
+      var msg = t["wa.msg.base"] || "Hello OceanGate, I'd like to request assistance.";
+      // Read the visible label, not the value, so the prefilled
+      // message is written in the language the visitor is reading.
+      var p = label(port);
+      var s = label(service);
+
+      if (p) msg += "\n" + (t["wa.msg.port"]    || "Port:")    + " " + p;
+      if (s) msg += "\n" + (t["wa.msg.service"] || "Service:") + " " + s;
+
+      cta.href = "https://wa.me/" + NUMBER + "?text=" + encodeURIComponent(msg);
+      if (preview) preview.textContent = msg.replace(/\n/g, " · ");
+    }
+
+    [port, service].forEach(function (el) {
+      if (el) el.addEventListener("change", build);
     });
+
+    // Rebuild when the language toggle runs, so the prefilled
+    // message follows the language the visitor is reading in.
+    document.addEventListener("og:langchange", build);
+
+    build();
   }
 
   /* ── GSAP ScrollTrigger animations ───────────────────── */
@@ -640,6 +662,8 @@
       });
 
       try { localStorage.setItem("og-lang", lang); } catch(e) {}
+
+      document.dispatchEvent(new CustomEvent("og:langchange", { detail: { lang: lang } }));
     }
 
     var stored = "en";
@@ -665,7 +689,7 @@
     safe(initCoverage,     "initCoverage");
     safe(initOpsClock,     "initOpsClock");
     safe(initTilt,         "initTilt");
-    safe(initContactForm,  "initContactForm");
+    safe(initWaComposer,   "initWaComposer");
     safe(initWaBubble,     "initWaBubble");
     safe(initSectionSpotlights, "initSectionSpotlights");
     safe(initPhotoCarousels,    "initPhotoCarousels");

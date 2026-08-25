@@ -3,15 +3,9 @@
   "configurations": [
     {
       "name": "oceangate",
-      "runtimeExecutable": "/Users/macbookpro/.nvm/versions/node/v20.20.2/bin/node",
+      "runtimeExecutable": "node",
       "runtimeArgs": ["serve.js"],
       "port": 8765
-    },
-    {
-      "name": "new-youth",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "/Users/macbookpro/Desktop/new youth", "run", "dev", "--", "-p", "3000"],
-      "port": 3000
     }
   ]
 }
