@@ -2205,12 +2205,6 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.05; }
 
 /* 720px+ */
 @media (min-width: 720px) {
-  .nav-links { display: flex; }
-  .nav-cta { display: inline-flex; }
-  .lang-toggle { display: inline-flex; }
-  .nav-hamburger { display: none; }
-  .mobile-menu { display: none !important; }
-
   .about-grid { grid-template-columns: 1fr 1fr; }
   .coverage-layout { grid-template-columns: 1fr 1fr; }
   .ops-layout { grid-template-columns: 1fr 1fr; }
@@ -2395,4 +2389,42 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.05; }
     letter-spacing: .08em;
     white-space: nowrap;
   }
+}
+
+/* =============================================================
+   21. Nav: correcciones de responsive
+   ============================================================= */
+
+/* El selector de idioma estaba oculto bajo 720px y el menu hamburguesa
+   nunca lo incluyo, asi que en celular no habia forma de pasar a espanol:
+   el sitio abre en ingles y ahi se quedaba. En un sitio costarricense,
+   donde la mayoria del trafico local es movil, eso dejaba toda la
+   traduccion inalcanzable. Ahora se muestra en todos los anchos. */
+.lang-toggle { display: inline-flex; }
+
+@media (max-width: 979px) {
+  .nav { gap: .5rem; }
+  .nav-logo img { width: 64px !important; height: 64px !important; }
+  .lang-toggle {
+    margin-left: auto;
+    padding: .45rem .6rem;
+    font-size: 10px;
+  }
+  .nav-hamburger { margin-left: .25rem; }
+}
+
+@media (max-width: 400px) {
+  .nav-logo-text { font-size: .95rem; }
+  .nav-logo img { width: 52px !important; height: 52px !important; }
+}
+
+/* El nav de escritorio entraba a los 720px, pero los enlaces mas el CTA
+   necesitan ~950px: entre medio, el boton y el selector se salian de la
+   pantalla. Se sube el corte a 980px y hasta ahi manda la hamburguesa. */
+@media (min-width: 980px) {
+  .nav-links { display: flex; }
+  .nav-cta { display: inline-flex; }
+  .nav-hamburger { display: none; }
+  .mobile-menu { display: none !important; }
+  .lang-toggle { margin-left: 0; }
 }
