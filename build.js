@@ -28,14 +28,15 @@ const copy = rel => {
 };
 
 const RAIZ = [
-  "index.html", "styles.css", "main.js",
+  "index.html", "privacy.html", "terms.html",
+  "styles.css", "main.js",
   ".htaccess", "robots.txt", "sitemap.xml",
   "lib/gsap.min.js", "lib/ScrollTrigger.min.js",
-  "lib/manifest.js", "lib/translations.js"
+  "lib/manifest.js", "lib/translations.js", "lib/legal.js"
 ];
 
 // Fuentes donde buscar rutas de imagenes.
-const FUENTES = ["index.html", "styles.css", "main.js", "lib/manifest.js"];
+const FUENTES = ["index.html", "privacy.html", "terms.html", "styles.css", "main.js", "lib/manifest.js"];
 const RE_IMG  = /assets\/[A-Za-z0-9_./ -]*\.(?:webp|jpg|jpeg|png|svg)/g;
 
 let total = 0;
